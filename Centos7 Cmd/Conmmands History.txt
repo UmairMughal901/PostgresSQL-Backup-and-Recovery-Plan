@@ -1,0 +1,384 @@
+QL.5432"
+Aug 13 15:35:36 localhost.localdomain postmaster[2972]: 2020-08-13 15:35:36.720 PKT [2972] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+Aug 13 15:35:36 localhost.localdomain postmaster[2972]: 2020-08-13 15:35:36.760 PKT [2972] LOG:  redirecting log output to logging collector process
+Aug 13 15:35:36 localhost.localdomain postmaster[2972]: 2020-08-13 15:35:36.760 PKT [2972] HINT:  Future log output will appear in directory "log".
+Aug 13 15:35:36 localhost.localdomain systemd[1]: postgresql-11.service: main process exited, code=exited, status=1/FAILURE
+Aug 13 15:35:36 localhost.localdomain systemd[1]: Failed to start PostgreSQL 11 database server.
+Aug 13 15:35:36 localhost.localdomain systemd[1]: Unit postgresql-11.service entered failed state.
+Aug 13 15:35:36 localhost.localdomain systemd[1]: postgresql-11.service failed.
+[umair@localhost ~]$ systemctl start postgresql-11.service
+Job for postgresql-11.service failed because the control process exited with error code. See "systemctl status postgresql-11.service" and "journalctl -xe" for details.
+[umair@localhost ~]$ systemctl enable postgresql-11.service
+[umair@localhost ~]$ systemctl start postgresql-11.service
+Job for postgresql-11.service failed because the control process exited with error code. See "systemctl status postgresql-11.service" and "journalctl -xe" for details.
+[umair@localhost ~]$ /usr/pgsql-9.5/bin/postgresql11-setup initdb
+bash: /usr/pgsql-9.5/bin/postgresql11-setup: No such file or directory
+[umair@localhost ~]$ /usr/pgsql-11/bin/postgresql11-setup initdb
+bash: /usr/pgsql-11/bin/postgresql11-setup: No such file or directory
+[umair@localhost ~]$ sudo /usr/pgsql-11/bin/postgresql-11-setup initdb
+[sudo] password for umair: 
+Data directory is not empty!
+
+[umair@localhost ~]$ ^C
+[umair@localhost ~]$ clear
+
+[umair@localhost ~]$ hostory
+bash: hostory: command not found...
+[umair@localhost ~]$ history
+    1  help
+    2  help command
+    3  History -c
+    4  help -dms
+    5  time
+    6  time -p
+    7  ls
+    8  exit
+    9  sudo
+   10  sudo -h
+   11  help sudo
+   12  help
+   13  exit
+   14  ##how to reduce the size of desktop icons
+   15  gsettings set org.gnome.nautilus.icon-view default-zoom-level small
+   16  exit
+   17  rpm -q centos -release
+   18  rpm -q
+   19  rpm -q centos-release
+   20  \q
+   21  exit
+   22  ## now we are going to install postgresql 11 on centos 7
+   23  ## first check the centos release
+   24  rpm -q centos-release
+   25  ## 7.8
+   26  ###Ok now add the postgresql repository in system
+   27  yum install https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch
+   28  sudo su-
+   29  su-
+   30  sudo umair-
+   31  sudo su-
+   32  /q
+   33  \q
+   34  /q
+   35  yum install https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch
+   36  sudo
+   37  sudo -h
+   38  sudo -i
+   39  passwd postgres
+   40  sudo root
+   41  sudo su-
+   42  sudo -u root
+   43  sudo -h
+   44  sudo
+   45  sudo -U
+   46  sudo -l -u
+   47  sudo rppt
+   48  sudo root
+   49  sudo -u root
+   50  sudo -u
+   51  sudo -root
+   52  clear
+   53  history 
+   54  systemctl enable postgresql-11.service
+   55  sudo -u postgres psql
+   56  sudo - postges
+   57  sudo - postgres
+   58  clear
+   59  man su
+   60  su root
+   61  exit
+   62  time datectl
+   63  timedatectl
+   64  loclectl
+   65  localectl
+   66  systemctl -t service -state=active
+   67  systemctl -t service --state=active
+   68  man systemctl
+   69  su postgres
+   70  \password postgres
+   71  sudo passwd postgres
+   72  sudo postgres
+   73  su postgres
+   74  #############welcome to Geoup #########################
+   75  ## how to check postgresql vrsion
+   76  sudo - postgres
+   77  sudo su- postgres
+   78  sudo su - postgres
+   79  sudo su - postgres
+   80  systemctl postgres status
+   81  service postgres status
+   82  systemctl start postgres
+   83  postgres-setup initdb
+   84  su root
+   85  sudo su - postgres
+   86  psql -h localhost -U myuser2 mydb2
+   87  psql -h 127.0.0.1 -U myuser2 mydb2
+   88  psql -h 127.0.0.1 -U 'myuser2' mydb2
+   89  psql -h 127.0.0.1 -U
+   90  psql -h 127.0.0.1
+   91  psql
+   92  su myuser2
+   93  su root
+   94  psql -U testuser newdb
+   95  psql -h 127.0.0.1 -U testuser newdb
+   96  psql -h 127.0.0.1 -U postgres template0
+   97  psql -h 127.0.0.1 -U myuser mydb
+   98  psql -h 127.0.0.1 -U testuser newdb;
+   99  psql --help
+  100  psql -h 127.0.0.1 newdb -U testuser
+  101  psql -h 127.0.0.1 newdb testuser
+  102  psql -h 127.0.0.1 -U newdb testuser
+  103  psql -h 127.0.0.1 -U testuser
+  104  psql -h 127.0.0.1 -U testuser newdb;
+  105  psql
+  106  su postgres
+  107  yum install rh-pyhton36
+  108  su root
+  109  exit
+  110  python --version
+  111  scl enable rh-python36 bash
+  112  quit
+  113  close
+  114  ## first we will install python
+  115  yum update
+  116  su root
+  117  # yum -y install https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+  118  yum -y install https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+  119  su root
+  120  ## now we will connect to postgres user
+  121  psql -h 127.0.0.1 -U testuser newdb
+  122  # there is identification authentication error
+  123  ## lets resolve this error 
+  124  sudo vi /var/lib/pgsql/data/
+  125  sudo su - postgres
+  126  ## how to loginto the postgres user account 
+  127  sudo -i -u postgres
+  128  sudo -i -u testuser
+  129  \co
+  130  sudo -i -u postgres
+  131  clear
+  132  psql -h 127.0.0.1 -U testuser newdb
+  133  ## resolve this error by editng the file pg_hba.conf
+  134  sudo systemctl restart postgresql
+  135  sudo systemctl restart postgres
+  136  systemctl restart postgres
+  137  systemctl restart postgresql
+  138  psql -h 127.0.0.1 -U testuser newdb
+  139  systemctl restart postgresql
+  140  sevices
+  141  service
+  142  service --full-restart
+  143  service stat
+  144  service start
+  145  service postgres start
+  146  service postgresql start
+  147  service --help
+  148  systemctl status service
+  149  systemctl status postgresql
+  150  systemctl status postgres
+  151  su root
+  152  sudo su - postgres
+  153  ls
+  154  path
+  155  pg_dump tutdb > backup_tutdb.sql
+  156  sudo su - postgres
+  157  df -h
+  158  systemctl
+  159  clear
+  160  sudo su - postgres
+  161  clear
+  162  ##connect to the Database User
+  163  sudo su - postgres
+  164  ## connect to the database role
+  165  sudo su - postgres
+  166  ## connect to postgres super use
+  167  ## connect to postgres super user
+  168  ##################################
+  169  sudo su - postgres
+  170  exit
+  171  systemctl postgres11 status
+  172  systemctl postgres-11 status
+  173  systemctl
+  174  systemctl postgresql-11 status
+  175  systemctl status postgresql-11
+  176  systemctl restart postgresql-11
+  177  pwd
+  178  cd /tmp
+  179  pwd
+  180  cd /tempfile/pg
+  181  cd /tempfile
+  182  pwd
+  183  cd /tempfiles
+  184  cd /tempfile
+  185  pwd
+  186  cd..
+  187  cd...
+  188  cd /
+  189  pwd
+  190  cd /
+  191  pwd
+  192  cd temp
+  193  cd tmp
+  194  pwd
+  195  cd /tempfile
+  196  cd 
+  197  cd root
+  198  ll
+  199  cd /..
+  200  pwd
+  201  sudo su - postgres
+  202  ls
+  203  cd tmp
+  204  ls
+  205  cd tempfile
+  206  pwd
+  207  cd pg
+  208  pwd
+  209  ll
+  210  ls
+  211  cd wals
+  212  cd Wals
+  213  ll
+  214  pwd
+  215  cd /..
+  216  [wd
+  217  pwd
+  218  sudo su - postgres
+  219  su root
+  220  ls
+  221  /physicalbackup.sh
+  222  /physicalbackup.
+  223  /physicalbackup
+  224  chmod +x physicalbackup.sh
+  225  clear
+  226  sudo -H -u postgres mkdir /var/lib/postgresql/pg_log_archive
+  227  sudo -H -u postgres mkdir /tmp/tempfile/pg/Wals
+  228  sudo nano /var/lib/pgsql/11/data/postgresql.conf
+  229  sudo systemctl restart postgresql-11
+  230  sudo su - postgres
+  231  clear
+  232  cleat
+  233  clear
+  234  ### create directory for archive logs
+  235  sudo -H -u postgres mkdir /var/lib/postgresql/pg_log_archive
+  236  ## enable archive logging
+  237  sudo nano /var/lib/pgsql/11/data/postgresql.conf
+  238  systemctl restart postgresql-11
+  239  ## create a database with insert data
+  240  sudo su - postgres
+  241  journelctl -xe
+  242  systemctl status postgresql-11
+  243  systemctl start postgresql-11
+  244  sudo su - postgres
+  245  systemctl start postgresql-11
+  246  ##create sh file for cron job
+  247  cat cronjobtest.sh
+  248  pqwd
+  249  pwd
+  250  cd tmp
+  251  cd /
+  252  pwd
+  253  cd tmp
+  254  pwd
+  255  cd tempfile/cron
+  256  pwd
+  257  ls
+  258  cat cronjobtest.sh
+  259  ##lets try to run that file
+  260  ll
+  261  ##now here only one file
+  262  ./cronjobtest.sh
+  263  ll
+  264  ls
+  265  cat cronjobtest.sh
+  266   ./cronjobtest.sh
+  267  ll
+  268  ## now we have two file in that folder
+  269  ll
+  270  ## now run again 
+  271   ./cronjobtest.sh
+  272  ll
+  273  its making files
+  274  ##lets remove these files
+  275  rm Thu Jun 25 23:55:26 PKT 2020
+  276  rm --help
+  277  rm -f -v Thu Jun 25 23:55:26 PKT 2020.txt
+  278  ls
+  279  rm -f Thu Jun 25 23:55:26 PKT 2020.txt
+  280  rm Thu Jun 25 23:55:26 PKT 2020.txt
+  281  rm Thu Jun 25 23:55:26 PKT 2020.text
+  282  rm Thu Jun 25 23:55:26 PKT 2020.txt
+  283  rm Thu/ Jun/ 25/ 23:55:26/ PKT 2020
+  284  rm Thu/Jun/25/23:55:26/PKT/2020
+  285  ## i removed from GUI
+  286  ##Lets schedule task by crontab
+  287  crontab -e
+  288  ls
+  289  ll
+  290  ## each mintue it will create job
+  291  ll
+  292  ls
+  293  ll
+  294  ## now two files
+  295  that all
+  296  crontab --help
+  297  crontab -r
+  298  crontab -e
+  299  crontab --help
+  300  crontab -r
+  301  crontab -l
+  302  quit
+  303  exit
+  304  pws
+  305  pwd
+  306  cd tmp
+  307  cd /
+  308  cd tmp
+  309  cd tempfile
+  310  cd cron
+  311  pwd
+  312   ./cronjobtest.sh
+  313  sudo su - postgres
+  314  exit
+  315  ## Today we are going to install pgadmin4 on cento7
+  316  ## i am considering that you have updated the yum and installed postgresql
+  317  ## install EPEL
+  318  yum install epel-release
+  319  sudo su - root
+  320  su root
+  321  help
+  322  ### Connect to postgres user
+  323  sudo su - postgres
+  324  help psql
+  325  sudo su - postgres
+  326  pgrep -u postgres -fa -- -D
+  327  pgrep -u
+  328  pgrep -u postgres
+  329  systemctl list-units --type service --all
+  330  systemctl start postgresql-9.5.service
+  331  systemctl start postgresql-11.service
+  332  journalctl -xe
+  333  sudo /usr/pgsql-11/bin/postgresql-11-setup initdb
+  334  sudo systemctl start postgresql-11
+  335  rm -rf /var/lib/pgsql/data
+  336  su root
+  337  rm -rf /var/lib/pgsql/data/*
+  338  sudo su- root
+  339  sudo su - root
+  340  systemctl
+  341  service postgresql-11 start
+  342  journalctl-xe
+  343  journalctl -xe
+  344  systemctl start postgresql-11.service
+  345  systemctl status postgresql-9.5.service
+  346  systemctl status postgresql-11.service
+  347  systemctl status postgresql-11.service -l
+  348  systemctl start postgresql-11.service
+  349  systemctl enable postgresql-11.service
+  350  systemctl start postgresql-11.service
+  351  /usr/pgsql-9.5/bin/postgresql11-setup initdb
+  352  /usr/pgsql-11/bin/postgresql11-setup initdb
+  353  sudo /usr/pgsql-11/bin/postgresql-11-setup initdb
+  354  clear
+  355  hostory
+  356  history
+[umair@localhost ~]$ 

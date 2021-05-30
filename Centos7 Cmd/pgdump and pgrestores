@@ -1,0 +1,32 @@
+pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f"/tmp/tempfile/10.70.0.61.backup" tutdb
+-F c is custom format (compressed, and able to do in parallel with -j N) -b is including blobs, -v is verbose, -f is the backup file name
+
+restore from backup
+
+pg_restore -h localhost -p 5432 -U postgres -d old_db -v 
+"/usr/local/backup/10.70.0.61.backup"
+important to set -h localhost - option
+
+postgres=# \! pg_dump dbName -f /home ..../someWhere/db.sql
+-
+
+
+sudo -u user_name pg_dump dbName > /home ..../someWhere/db.sql
+
+Pg_dump –U postgres Database_name > “Path of Foler”\Name of file.sql
+
+
+pg_dumpall –U postgres --schema-only > “MyPATH”\definitions.sql
+Use the following command to backup the role definition only:
+pg_dumpall –U postgres --roles-only > “MyPATH”\roles.sql
+Use the following command to backup the tablespaces definition:
+pg_dumpall –U postgres --tablespaces-only > “MyPATH”\tablespaces.sql
+
+
+pg_dump -U postgres -W -F t dvdrental D:\DB Administration\Pg\dvdrental \dvdrental.tar
+
+pg_restore -h localhost -p 5432 -U postgres -d old_db -v 
+
+pg_restore -U postgres -d dvdrental C:\DbBackup\dvdrental.tar
+
+

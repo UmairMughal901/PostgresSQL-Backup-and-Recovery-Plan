@@ -1,0 +1,23 @@
+## Frist check the centos version
+rpm -q centos-release
+###add the pg repository in my system
+yum install https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch
+##after enabling postgresql repository in your system
+##Install PG11 in your system by following comand
+yum install postfresql11-sever
+##Initialize the pgsql by follwoing command
+/usr/pgsql-11/bin/postgresql-11-setup initdb
+##after initilize start the service
+systemctl start postgresql-11.sevice
+##now enable the service
+systemctl enable postgresql-11.service
+
+##now verifiy the psql by the calling command
+sudo -u postgres psql
+
+#now set the password for postgresql
+\password postgres
+******
+sudo systemctl start postgresql
+
+sudo passwd postgres

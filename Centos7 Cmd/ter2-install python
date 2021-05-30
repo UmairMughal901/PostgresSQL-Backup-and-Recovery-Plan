@@ -1,0 +1,1100 @@
+[umair@localhost ~]$ ## first we will install python
+[umair@localhost ~]$ yum update
+Loaded plugins: fastestmirror, langpacks
+You need to be root to perform this command.
+[umair@localhost ~]$ su root
+Password: 
+[root@localhost umair]# yum update
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package augeas-libs.x86_64 0:1.4.0-9.el7 will be updated
+---> Package augeas-libs.x86_64 0:1.4.0-9.el7_8.1 will be an update
+---> Package bind-export-libs.x86_64 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-export-libs.x86_64 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package bind-libs.x86_64 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-libs.x86_64 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package bind-libs-lite.x86_64 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-libs-lite.x86_64 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package bind-license.noarch 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-license.noarch 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package bind-utils.x86_64 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-utils.x86_64 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package binutils.x86_64 0:2.27-43.base.el7 will be updated
+---> Package binutils.x86_64 0:2.27-43.base.el7_8.1 will be an update
+---> Package bpftool.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package bpftool.x86_64 0:3.10.0-1127.10.1.el7 will be an update
+---> Package device-mapper.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-event.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-event.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-event-libs.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-event-libs.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-libs.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-libs.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package firefox.x86_64 0:68.5.0-2.el7.centos will be updated
+---> Package firefox.x86_64 0:68.9.0-1.el7.centos will be an update
+---> Package firewall-config.noarch 0:0.6.3-8.el7 will be updated
+---> Package firewall-config.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package firewalld.noarch 0:0.6.3-8.el7 will be updated
+---> Package firewalld.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package firewalld-filesystem.noarch 0:0.6.3-8.el7 will be updated
+---> Package firewalld-filesystem.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package flatpak.x86_64 0:1.0.9-8.el7_7 will be updated
+---> Package flatpak.x86_64 0:1.0.9-9.el7_7 will be an update
+---> Package flatpak-libs.x86_64 0:1.0.9-8.el7_7 will be updated
+---> Package flatpak-libs.x86_64 0:1.0.9-9.el7_7 will be an update
+---> Package freerdp-libs.x86_64 0:2.0.0-1.rc4.el7 will be updated
+---> Package freerdp-libs.x86_64 0:2.0.0-4.rc4.el7_8 will be an update
+---> Package iprutils.x86_64 0:2.4.17.1-3.el7 will be updated
+---> Package iprutils.x86_64 0:2.4.17.1-3.el7_7 will be an update
+---> Package java-1.8.0-openjdk.x86_64 1:1.8.0.242.b08-1.el7 will be updated
+---> Package java-1.8.0-openjdk.x86_64 1:1.8.0.252.b09-2.el7_8 will be an update
+---> Package java-1.8.0-openjdk-headless.x86_64 1:1.8.0.242.b08-1.el7 will be updated
+---> Package java-1.8.0-openjdk-headless.x86_64 1:1.8.0.252.b09-2.el7_8 will be an update
+---> Package kernel.x86_64 0:3.10.0-1127.10.1.el7 will be installed
+---> Package kernel-tools.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package kernel-tools.x86_64 0:3.10.0-1127.10.1.el7 will be an update
+---> Package kernel-tools-libs.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package kernel-tools-libs.x86_64 0:3.10.0-1127.10.1.el7 will be an update
+---> Package libexif.x86_64 0:0.6.21-6.el7 will be updated
+---> Package libexif.x86_64 0:0.6.21-7.el7_8 will be an update
+---> Package libgudev1.x86_64 0:219-73.el7.1 will be updated
+---> Package libgudev1.x86_64 0:219-73.el7_8.6 will be an update
+---> Package libibverbs.x86_64 0:22.4-1.el7 will be updated
+---> Package libibverbs.x86_64 0:22.4-2.el7_8 will be an update
+---> Package libicu.x86_64 0:50.2-3.el7 will be updated
+---> Package libicu.x86_64 0:50.2-4.el7_7 will be an update
+---> Package librdmacm.x86_64 0:22.4-1.el7 will be updated
+---> Package librdmacm.x86_64 0:22.4-2.el7_8 will be an update
+---> Package libsmbclient.x86_64 0:4.10.4-10.el7 will be updated
+---> Package libsmbclient.x86_64 0:4.10.4-11.el7_8 will be an update
+---> Package libsss_idmap.x86_64 0:1.16.4-37.el7 will be updated
+---> Package libsss_idmap.x86_64 0:1.16.4-37.el7_8.3 will be an update
+---> Package libsss_nss_idmap.x86_64 0:1.16.4-37.el7 will be updated
+---> Package libsss_nss_idmap.x86_64 0:1.16.4-37.el7_8.3 will be an update
+---> Package libvirt-daemon.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-config-network.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-config-network.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-interface.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-interface.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-network.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-network.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-nodedev.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-nodedev.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-nwfilter.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-nwfilter.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-qemu.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-qemu.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-secret.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-secret.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-core.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-core.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-disk.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-disk.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-gluster.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-gluster.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-iscsi.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-iscsi.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-logical.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-logical.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-mpath.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-mpath.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-rbd.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-rbd.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-driver-storage-scsi.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-driver-storage-scsi.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-daemon-kvm.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-daemon-kvm.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libvirt-libs.x86_64 0:4.5.0-33.el7 will be updated
+---> Package libvirt-libs.x86_64 0:4.5.0-33.el7_8.1 will be an update
+---> Package libwbclient.x86_64 0:4.10.4-10.el7 will be updated
+---> Package libwbclient.x86_64 0:4.10.4-11.el7_8 will be an update
+---> Package libwinpr.x86_64 0:2.0.0-1.rc4.el7 will be updated
+---> Package libwinpr.x86_64 0:2.0.0-4.rc4.el7_8 will be an update
+---> Package libwvstreams.x86_64 0:4.6.1-11.el7 will be updated
+---> Package libwvstreams.x86_64 0:4.6.1-12.el7_8 will be an update
+---> Package lvm2.x86_64 7:2.02.186-7.el7 will be updated
+---> Package lvm2.x86_64 7:2.02.186-7.el7_8.2 will be an update
+---> Package lvm2-libs.x86_64 7:2.02.186-7.el7 will be updated
+---> Package lvm2-libs.x86_64 7:2.02.186-7.el7_8.2 will be an update
+---> Package mesa-dri-drivers.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-dri-drivers.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-filesystem.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-filesystem.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-libEGL.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-libEGL.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-libGL.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-libGL.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-libgbm.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-libgbm.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-libglapi.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-libglapi.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package mesa-libxatracker.x86_64 0:18.3.4-7.el7 will be updated
+---> Package mesa-libxatracker.x86_64 0:18.3.4-7.el7_8.1 will be an update
+---> Package microcode_ctl.x86_64 2:2.1-61.el7 will be updated
+---> Package microcode_ctl.x86_64 2:2.1-61.6.el7_8 will be an update
+---> Package mutter.x86_64 0:3.28.3-20.el7 will be updated
+---> Package mutter.x86_64 0:3.28.3-22.el7_8 will be an update
+---> Package net-snmp-libs.x86_64 1:5.7.2-47.el7 will be updated
+---> Package net-snmp-libs.x86_64 1:5.7.2-48.el7_8 will be an update
+---> Package open-vm-tools.x86_64 0:10.3.10-2.el7 will be updated
+---> Package open-vm-tools.x86_64 0:10.3.10-2.el7_8.1 will be an update
+---> Package open-vm-tools-desktop.x86_64 0:10.3.10-2.el7 will be updated
+---> Package open-vm-tools-desktop.x86_64 0:10.3.10-2.el7_8.1 will be an update
+---> Package ppp.x86_64 0:2.4.5-33.el7 will be updated
+---> Package ppp.x86_64 0:2.4.5-34.el7_7 will be an update
+---> Package python-firewall.noarch 0:0.6.3-8.el7 will be updated
+---> Package python-firewall.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package python-perf.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package python-perf.x86_64 0:3.10.0-1127.10.1.el7 will be an update
+---> Package qemu-img.x86_64 10:1.5.3-173.el7 will be updated
+---> Package qemu-img.x86_64 10:1.5.3-173.el7_8.3 will be an update
+---> Package qemu-kvm.x86_64 10:1.5.3-173.el7 will be updated
+---> Package qemu-kvm.x86_64 10:1.5.3-173.el7_8.3 will be an update
+---> Package qemu-kvm-common.x86_64 10:1.5.3-173.el7 will be updated
+---> Package qemu-kvm-common.x86_64 10:1.5.3-173.el7_8.3 will be an update
+---> Package rdma-core.x86_64 0:22.4-1.el7 will be updated
+---> Package rdma-core.x86_64 0:22.4-2.el7_8 will be an update
+---> Package samba-client-libs.x86_64 0:4.10.4-10.el7 will be updated
+---> Package samba-client-libs.x86_64 0:4.10.4-11.el7_8 will be an update
+---> Package samba-common.noarch 0:4.10.4-10.el7 will be updated
+---> Package samba-common.noarch 0:4.10.4-11.el7_8 will be an update
+---> Package samba-common-libs.x86_64 0:4.10.4-10.el7 will be updated
+---> Package samba-common-libs.x86_64 0:4.10.4-11.el7_8 will be an update
+---> Package samba-libs.x86_64 0:4.10.4-10.el7 will be updated
+---> Package samba-libs.x86_64 0:4.10.4-11.el7_8 will be an update
+---> Package sos.noarch 0:3.8-6.el7.centos will be updated
+---> Package sos.noarch 0:3.8-8.el7.centos will be an update
+---> Package sssd-client.x86_64 0:1.16.4-37.el7 will be updated
+---> Package sssd-client.x86_64 0:1.16.4-37.el7_8.3 will be an update
+---> Package systemd.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd.x86_64 0:219-73.el7_8.6 will be an update
+---> Package systemd-libs.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd-libs.x86_64 0:219-73.el7_8.6 will be an update
+---> Package systemd-python.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd-python.x86_64 0:219-73.el7_8.6 will be an update
+---> Package systemd-sysv.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd-sysv.x86_64 0:219-73.el7_8.6 will be an update
+---> Package tzdata.noarch 0:2019c-1.el7 will be updated
+---> Package tzdata.noarch 0:2020a-1.el7 will be an update
+---> Package tzdata-java.noarch 0:2019c-1.el7 will be updated
+---> Package tzdata-java.noarch 0:2020a-1.el7 will be an update
+---> Package unbound-libs.x86_64 0:1.6.6-3.el7 will be updated
+---> Package unbound-libs.x86_64 0:1.6.6-4.el7_8 will be an update
+---> Package xorg-x11-drv-ati.x86_64 0:19.0.1-3.el7 will be updated
+---> Package xorg-x11-drv-ati.x86_64 0:19.0.1-3.el7_7 will be an update
+---> Package yum-plugin-fastestmirror.noarch 0:1.1.31-53.el7 will be updated
+---> Package yum-plugin-fastestmirror.noarch 0:1.1.31-54.el7_8 will be an update
+---> Package yum-utils.noarch 0:1.1.31-53.el7 will be updated
+---> Package yum-utils.noarch 0:1.1.31-54.el7_8 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                           Arch   Version                 Repository
+                                                                           Size
+================================================================================
+Installing:
+ kernel                            x86_64 3.10.0-1127.10.1.el7    updates  50 M
+Updating:
+ augeas-libs                       x86_64 1.4.0-9.el7_8.1         updates 357 k
+ bind-export-libs                  x86_64 32:9.11.4-16.P2.el7_8.6 updates 1.1 M
+ bind-libs                         x86_64 32:9.11.4-16.P2.el7_8.6 updates 156 k
+ bind-libs-lite                    x86_64 32:9.11.4-16.P2.el7_8.6 updates 1.1 M
+ bind-license                      noarch 32:9.11.4-16.P2.el7_8.6 updates  90 k
+ bind-utils                        x86_64 32:9.11.4-16.P2.el7_8.6 updates 259 k
+ binutils                          x86_64 2.27-43.base.el7_8.1    updates 5.9 M
+ bpftool                           x86_64 3.10.0-1127.10.1.el7    updates 8.4 M
+ device-mapper                     x86_64 7:1.02.164-7.el7_8.2    updates 295 k
+ device-mapper-event               x86_64 7:1.02.164-7.el7_8.2    updates 191 k
+ device-mapper-event-libs          x86_64 7:1.02.164-7.el7_8.2    updates 190 k
+ device-mapper-libs                x86_64 7:1.02.164-7.el7_8.2    updates 324 k
+ firefox                           x86_64 68.9.0-1.el7.centos     updates  94 M
+ firewall-config                   noarch 0.6.3-8.el7_8.1         updates 137 k
+ firewalld                         noarch 0.6.3-8.el7_8.1         updates 443 k
+ firewalld-filesystem              noarch 0.6.3-8.el7_8.1         updates  51 k
+ flatpak                           x86_64 1.0.9-9.el7_7           updates 949 k
+ flatpak-libs                      x86_64 1.0.9-9.el7_7           updates 595 k
+ freerdp-libs                      x86_64 2.0.0-4.rc4.el7_8       updates 780 k
+ iprutils                          x86_64 2.4.17.1-3.el7_7        updates 243 k
+ java-1.8.0-openjdk                x86_64 1:1.8.0.252.b09-2.el7_8 updates 295 k
+ java-1.8.0-openjdk-headless       x86_64 1:1.8.0.252.b09-2.el7_8 updates  32 M
+ kernel-tools                      x86_64 3.10.0-1127.10.1.el7    updates 8.0 M
+ kernel-tools-libs                 x86_64 3.10.0-1127.10.1.el7    updates 8.0 M
+ libexif                           x86_64 0.6.21-7.el7_8          updates 348 k
+ libgudev1                         x86_64 219-73.el7_8.6          updates 107 k
+ libibverbs                        x86_64 22.4-2.el7_8            updates 268 k
+ libicu                            x86_64 50.2-4.el7_7            updates 6.9 M
+ librdmacm                         x86_64 22.4-2.el7_8            updates  64 k
+ libsmbclient                      x86_64 4.10.4-11.el7_8         updates 142 k
+ libsss_idmap                      x86_64 1.16.4-37.el7_8.3       updates 155 k
+ libsss_nss_idmap                  x86_64 1.16.4-37.el7_8.3       updates 161 k
+ libvirt-daemon                    x86_64 4.5.0-33.el7_8.1        updates 843 k
+ libvirt-daemon-config-network     x86_64 4.5.0-33.el7_8.1        updates 202 k
+ libvirt-daemon-driver-interface   x86_64 4.5.0-33.el7_8.1        updates 240 k
+ libvirt-daemon-driver-network     x86_64 4.5.0-33.el7_8.1        updates 415 k
+ libvirt-daemon-driver-nodedev     x86_64 4.5.0-33.el7_8.1        updates 240 k
+ libvirt-daemon-driver-nwfilter    x86_64 4.5.0-33.el7_8.1        updates 263 k
+ libvirt-daemon-driver-qemu        x86_64 4.5.0-33.el7_8.1        updates 750 k
+ libvirt-daemon-driver-secret      x86_64 4.5.0-33.el7_8.1        updates 230 k
+ libvirt-daemon-driver-storage     x86_64 4.5.0-33.el7_8.1        updates 201 k
+ libvirt-daemon-driver-storage-core
+                                   x86_64 4.5.0-33.el7_8.1        updates 440 k
+ libvirt-daemon-driver-storage-disk
+                                   x86_64 4.5.0-33.el7_8.1        updates 231 k
+ libvirt-daemon-driver-storage-gluster
+                                   x86_64 4.5.0-33.el7_8.1        updates 239 k
+ libvirt-daemon-driver-storage-iscsi
+                                   x86_64 4.5.0-33.el7_8.1        updates 229 k
+ libvirt-daemon-driver-storage-logical
+                                   x86_64 4.5.0-33.el7_8.1        updates 232 k
+ libvirt-daemon-driver-storage-mpath
+                                   x86_64 4.5.0-33.el7_8.1        updates 227 k
+ libvirt-daemon-driver-storage-rbd x86_64 4.5.0-33.el7_8.1        updates 234 k
+ libvirt-daemon-driver-storage-scsi
+                                   x86_64 4.5.0-33.el7_8.1        updates 229 k
+ libvirt-daemon-kvm                x86_64 4.5.0-33.el7_8.1        updates 200 k
+ libvirt-libs                      x86_64 4.5.0-33.el7_8.1        updates 4.2 M
+ libwbclient                       x86_64 4.10.4-11.el7_8         updates 113 k
+ libwinpr                          x86_64 2.0.0-4.rc4.el7_8       updates 322 k
+ libwvstreams                      x86_64 4.6.1-12.el7_8          updates 653 k
+ lvm2                              x86_64 7:2.02.186-7.el7_8.2    updates 1.3 M
+ lvm2-libs                         x86_64 7:2.02.186-7.el7_8.2    updates 1.1 M
+ mesa-dri-drivers                  x86_64 18.3.4-7.el7_8.1        updates 7.2 M
+ mesa-filesystem                   x86_64 18.3.4-7.el7_8.1        updates  18 k
+ mesa-libEGL                       x86_64 18.3.4-7.el7_8.1        updates 109 k
+ mesa-libGL                        x86_64 18.3.4-7.el7_8.1        updates 165 k
+ mesa-libgbm                       x86_64 18.3.4-7.el7_8.1        updates  39 k
+ mesa-libglapi                     x86_64 18.3.4-7.el7_8.1        updates  46 k
+ mesa-libxatracker                 x86_64 18.3.4-7.el7_8.1        updates 1.3 M
+ microcode_ctl                     x86_64 2:2.1-61.6.el7_8        updates 2.6 M
+ mutter                            x86_64 3.28.3-22.el7_8         updates 2.3 M
+ net-snmp-libs                     x86_64 1:5.7.2-48.el7_8        updates 751 k
+ open-vm-tools                     x86_64 10.3.10-2.el7_8.1       updates 674 k
+ open-vm-tools-desktop             x86_64 10.3.10-2.el7_8.1       updates 170 k
+ ppp                               x86_64 2.4.5-34.el7_7          updates 358 k
+ python-firewall                   noarch 0.6.3-8.el7_8.1         updates 354 k
+ python-perf                       x86_64 3.10.0-1127.10.1.el7    updates 8.0 M
+ qemu-img                          x86_64 10:1.5.3-173.el7_8.3    updates 703 k
+ qemu-kvm                          x86_64 10:1.5.3-173.el7_8.3    updates 1.9 M
+ qemu-kvm-common                   x86_64 10:1.5.3-173.el7_8.3    updates 438 k
+ rdma-core                         x86_64 22.4-2.el7_8            updates  51 k
+ samba-client-libs                 x86_64 4.10.4-11.el7_8         updates 5.0 M
+ samba-common                      noarch 4.10.4-11.el7_8         updates 212 k
+ samba-common-libs                 x86_64 4.10.4-11.el7_8         updates 176 k
+ samba-libs                        x86_64 4.10.4-11.el7_8         updates 271 k
+ sos                               noarch 3.8-8.el7.centos        updates 517 k
+ sssd-client                       x86_64 1.16.4-37.el7_8.3       updates 211 k
+ systemd                           x86_64 219-73.el7_8.6          updates 5.1 M
+ systemd-libs                      x86_64 219-73.el7_8.6          updates 416 k
+ systemd-python                    x86_64 219-73.el7_8.6          updates 143 k
+ systemd-sysv                      x86_64 219-73.el7_8.6          updates  94 k
+ tzdata                            noarch 2020a-1.el7             updates 495 k
+ tzdata-java                       noarch 2020a-1.el7             updates 188 k
+ unbound-libs                      x86_64 1.6.6-4.el7_8           updates 406 k
+ xorg-x11-drv-ati                  x86_64 19.0.1-3.el7_7          updates 166 k
+ yum-plugin-fastestmirror          noarch 1.1.31-54.el7_8         updates  34 k
+ yum-utils                         noarch 1.1.31-54.el7_8         updates 122 k
+
+Transaction Summary
+================================================================================
+Install   1 Package
+Upgrade  91 Packages
+
+Total size: 276 M
+Total download size: 231 M
+Is this ok [y/d/N]: y
+Downloading packages:
+No Presto metadata available for updates
+warning: /var/cache/yum/x86_64/7/updates/packages/bind-license-9.11.4-16.P2.el7_8.6.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for bind-license-9.11.4-16.P2.el7_8.6.noarch.rpm is not installed
+(1/63): bind-license-9.11.4-16.P2.el7_8.6.noarch.rpm       |  90 kB   00:06     
+(2/63): device-mapper-1.02.164-7.el7_8.2.x86_64.rpm        | 295 kB   00:09     
+(3/63): device-mapper-event-libs-1.02.164-7.el7_8.2.x86_64 | 190 kB   00:03     
+(4/63): device-mapper-libs-1.02.164-7.el7_8.2.x86_64.rpm   | 324 kB   00:06     
+(5/63): device-mapper-event-1.02.164-7.el7_8.2.x86_64.rpm  | 191 kB   00:17     
+(6/63): firewall-config-0.6.3-8.el7_8.1.noarch.rpm         | 137 kB   00:02     
+(7/63): firewalld-filesystem-0.6.3-8.el7_8.1.noarch.rpm    |  51 kB   00:01     
+(8/63): firewalld-0.6.3-8.el7_8.1.noarch.rpm               | 443 kB   00:04     
+(9/63): flatpak-libs-1.0.9-9.el7_7.x86_64.rpm              | 595 kB   00:05     
+(10/63): iprutils-2.4.17.1-3.el7_7.x86_64.rpm              | 243 kB   00:08     
+(11/63): java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64.r | 295 kB   00:05     
+(12/63): freerdp-libs-2.0.0-4.rc4.el7_8.x86_64.rpm         | 780 kB   00:37     
+(13/63): bpftool-3.10.0-1127.10.1.el7.x86_64.rpm           | 8.4 MB   03:24     
+(14/63): java-1.8.0-openjdk-headless-1.8.0.252.b09-2.el7_8 |  32 MB   06:05     
+(15/63): libexif-0.6.21-7.el7_8.x86_64.rpm                 | 348 kB   00:24     
+libibverbs-22.4-2.el7_8.x86_64 FAILED                                           
+http://mirrors.piconets.webwerks.in/centos-mirror/7.8.2003/updates/x86_64/Packages/libibverbs-22.4-2.el7_8.x86_64.rpm: [Errno 14] HTTP Error 500 - Internal Server Error
+Trying other mirror.
+(16/63): libsmbclient-4.10.4-11.el7_8.x86_64.rpm           | 142 kB   00:50     
+(17/63): kernel-tools-libs-3.10.0-1127.10.1.el7.x86_64.rpm | 8.0 MB   01:30     
+(18/63): libsss_nss_idmap-1.16.4-37.el7_8.3.x86_64.rpm     | 161 kB   00:05     
+(19/63): libvirt-daemon-4.5.0-33.el7_8.1.x86_64.rpm        | 843 kB   00:13     
+(20/63): libvirt-daemon-config-network-4.5.0-33.el7_8.1.x8 | 202 kB   00:02     
+(21/63): libvirt-daemon-driver-interface-4.5.0-33.el7_8.1. | 240 kB   00:03     
+(22/63): libvirt-daemon-driver-nodedev-4.5.0-33.el7_8.1.x8 | 240 kB   00:04     
+(23/63): libvirt-daemon-driver-nwfilter-4.5.0-33.el7_8.1.x | 263 kB   00:03     
+(24/63): kernel-tools-3.10.0-1127.10.1.el7.x86_64.rpm      | 8.0 MB   02:06     
+(25/63): libsss_idmap-1.16.4-37.el7_8.3.x86_64.rpm         | 155 kB   00:54     
+(26/63): libvirt-daemon-driver-secret-4.5.0-33.el7_8.1.x86 | 230 kB   00:11     
+(27/63): libvirt-daemon-driver-storage-iscsi-4.5.0-33.el7_ | 229 kB   00:04     
+(28/63): libvirt-daemon-driver-storage-mpath-4.5.0-33.el7_ | 227 kB   00:02     
+(29/63): libvirt-daemon-kvm-4.5.0-33.el7_8.1.x86_64.rpm    | 200 kB   00:03     
+(30/63): libvirt-daemon-driver-storage-gluster-4.5.0-33.el | 239 kB   00:20     
+(31/63): libvirt-daemon-driver-storage-4.5.0-33.el7_8.1.x8 | 201 kB   00:27     
+(32/63): libwbclient-4.10.4-11.el7_8.x86_64.rpm            | 113 kB   00:01     
+(33/63): libvirt-libs-4.5.0-33.el7_8.1.x86_64.rpm          | 4.2 MB   00:15     
+(34/63): libwinpr-2.0.0-4.rc4.el7_8.x86_64.rpm             | 322 kB   00:05     
+(35/63): libwvstreams-4.6.1-12.el7_8.x86_64.rpm            | 653 kB   00:03     
+(36/63): lvm2-libs-2.02.186-7.el7_8.2.x86_64.rpm           | 1.1 MB   00:06     
+(37/63): lvm2-2.02.186-7.el7_8.2.x86_64.rpm                | 1.3 MB   00:16     
+(38/63): mesa-filesystem-18.3.4-7.el7_8.1.x86_64.rpm       |  18 kB   00:01     
+(39/63): mesa-libEGL-18.3.4-7.el7_8.1.x86_64.rpm           | 109 kB   00:02     
+(40/63): mesa-libgbm-18.3.4-7.el7_8.1.x86_64.rpm           |  39 kB   00:02     
+(41/63): mesa-libglapi-18.3.4-7.el7_8.1.x86_64.rpm         |  46 kB   00:03     
+(42/63): mesa-libxatracker-18.3.4-7.el7_8.1.x86_64.rpm     | 1.3 MB   00:08     
+(43/63): net-snmp-libs-5.7.2-48.el7_8.x86_64.rpm           | 751 kB   00:07     
+(44/63): open-vm-tools-desktop-10.3.10-2.el7_8.1.x86_64.rp | 170 kB   00:00     
+(45/63): ppp-2.4.5-34.el7_7.x86_64.rpm                     | 358 kB   00:02     
+(46/63): python-firewall-0.6.3-8.el7_8.1.noarch.rpm        | 354 kB   00:01     
+(47/63): qemu-kvm-1.5.3-173.el7_8.3.x86_64.rpm             | 1.9 MB   00:17     
+(48/63): mesa-dri-drivers-18.3.4-7.el7_8.1.x86_64.rpm      | 7.2 MB   00:56     
+(49/63): rdma-core-22.4-2.el7_8.x86_64.rpm                 |  51 kB   00:02     
+(50/63): qemu-kvm-common-1.5.3-173.el7_8.3.x86_64.rpm      | 438 kB   00:05     
+(51/63): samba-common-libs-4.10.4-11.el7_8.x86_64.rpm      | 176 kB   00:03     
+(52/63): samba-common-4.10.4-11.el7_8.noarch.rpm           | 212 kB   00:07     
+(53/63): samba-libs-4.10.4-11.el7_8.x86_64.rpm             | 271 kB   00:02     
+(54/63): sssd-client-1.16.4-37.el7_8.3.x86_64.rpm          | 211 kB   00:06     
+(55/63): systemd-libs-219-73.el7_8.6.x86_64.rpm            | 416 kB   00:05     
+(56/63): tzdata-2020a-1.el7.noarch.rpm                     | 495 kB   00:01     
+(57/63): xorg-x11-drv-ati-19.0.1-3.el7_7.x86_64.rpm        | 166 kB   00:02     
+(58/63): yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.r |  34 kB   00:01     
+(59/63): yum-utils-1.1.31-54.el7_8.noarch.rpm              | 122 kB   00:00     
+(60/63): libibverbs-22.4-2.el7_8.x86_64.rpm                | 268 kB   00:01     
+(61/63): kernel-3.10.0-1127.10.1.el7.x86_64.rpm            |  50 MB   04:13     
+(62/63): tzdata-java-2020a-1.el7.noarch.rpm                | 188 kB   00:07     
+(63/63): firefox-68.9.0-1.el7.centos.x86_64.rpm            |  94 MB   11:53     
+--------------------------------------------------------------------------------
+Total                                              328 kB/s | 231 MB  12:03     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-8.2003.0.el7.centos.x86_64 (@anaconda)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : systemd-libs-219-73.el7_8.6.x86_64                         1/183 
+  Updating   : systemd-219-73.el7_8.6.x86_64                              2/183 
+  Updating   : 7:device-mapper-libs-1.02.164-7.el7_8.2.x86_64             3/183 
+  Updating   : 7:device-mapper-1.02.164-7.el7_8.2.x86_64                  4/183 
+  Updating   : libvirt-libs-4.5.0-33.el7_8.1.x86_64                       5/183 
+  Updating   : mesa-libglapi-18.3.4-7.el7_8.1.x86_64                      6/183 
+  Updating   : mesa-libgbm-18.3.4-7.el7_8.1.x86_64                        7/183 
+  Updating   : 7:device-mapper-event-libs-1.02.164-7.el7_8.2.x86_64       8/183 
+  Updating   : samba-common-4.10.4-11.el7_8.noarch                        9/183 
+  Updating   : libwbclient-4.10.4-11.el7_8.x86_64                        10/183 
+  Updating   : samba-client-libs-4.10.4-11.el7_8.x86_64                  11/183 
+  Updating   : samba-libs-4.10.4-11.el7_8.x86_64                         12/183 
+  Updating   : samba-common-libs-4.10.4-11.el7_8.x86_64                  13/183 
+  Updating   : 10:qemu-img-1.5.3-173.el7_8.3.x86_64                      14/183 
+  Updating   : rdma-core-22.4-2.el7_8.x86_64                             15/183 
+  Updating   : libibverbs-22.4-2.el7_8.x86_64                            16/183 
+  Updating   : 32:bind-license-9.11.4-16.P2.el7_8.6.noarch               17/183 
+  Updating   : 32:bind-libs-lite-9.11.4-16.P2.el7_8.6.x86_64             18/183 
+  Updating   : libicu-50.2-4.el7_7.x86_64                                19/183 
+  Updating   : open-vm-tools-10.3.10-2.el7_8.1.x86_64                    20/183 
+  Updating   : 32:bind-libs-9.11.4-16.P2.el7_8.6.x86_64                  21/183 
+  Updating   : librdmacm-22.4-2.el7_8.x86_64                             22/183 
+  Updating   : 7:device-mapper-event-1.02.164-7.el7_8.2.x86_64           23/183 
+  Updating   : 7:lvm2-libs-2.02.186-7.el7_8.2.x86_64                     24/183 
+  Updating   : 7:lvm2-2.02.186-7.el7_8.2.x86_64                          25/183 
+  Updating   : systemd-sysv-219-73.el7_8.6.x86_64                        26/183 
+  Updating   : libvirt-daemon-4.5.0-33.el7_8.1.x86_64                    27/183 
+  Updating   : libvirt-daemon-driver-storage-core-4.5.0-33.el7_8.1.x8    28/183 
+  Updating   : libvirt-daemon-driver-network-4.5.0-33.el7_8.1.x86_64     29/183 
+  Updating   : libvirt-daemon-driver-qemu-4.5.0-33.el7_8.1.x86_64        30/183 
+  Updating   : libvirt-daemon-driver-storage-rbd-4.5.0-33.el7_8.1.x86    31/183 
+  Updating   : libvirt-daemon-driver-storage-logical-4.5.0-33.el7_8.1    32/183 
+  Updating   : libvirt-daemon-driver-storage-scsi-4.5.0-33.el7_8.1.x8    33/183 
+  Updating   : libvirt-daemon-driver-storage-disk-4.5.0-33.el7_8.1.x8    34/183 
+  Updating   : libvirt-daemon-driver-storage-gluster-4.5.0-33.el7_8.1    35/183 
+  Updating   : libvirt-daemon-driver-storage-iscsi-4.5.0-33.el7_8.1.x    36/183 
+  Updating   : libvirt-daemon-driver-storage-mpath-4.5.0-33.el7_8.1.x    37/183 
+  Updating   : libvirt-daemon-driver-storage-4.5.0-33.el7_8.1.x86_64     38/183 
+  Updating   : libvirt-daemon-driver-nodedev-4.5.0-33.el7_8.1.x86_64     39/183 
+  Updating   : libvirt-daemon-driver-nwfilter-4.5.0-33.el7_8.1.x86_64    40/183 
+  Updating   : libvirt-daemon-driver-secret-4.5.0-33.el7_8.1.x86_64      41/183 
+  Updating   : libvirt-daemon-driver-interface-4.5.0-33.el7_8.1.x86_6    42/183 
+  Updating   : 10:qemu-kvm-common-1.5.3-173.el7_8.3.x86_64               43/183 
+  Updating   : 10:qemu-kvm-1.5.3-173.el7_8.3.x86_64                      44/183 
+  Updating   : libgudev1-219-73.el7_8.6.x86_64                           45/183 
+  Updating   : libwinpr-2.0.0-4.rc4.el7_8.x86_64                         46/183 
+  Updating   : flatpak-libs-1.0.9-9.el7_7.x86_64                         47/183 
+  Updating   : flatpak-1.0.9-9.el7_7.x86_64                              48/183 
+  Updating   : mesa-filesystem-18.3.4-7.el7_8.1.x86_64                   49/183 
+  Updating   : python-firewall-0.6.3-8.el7_8.1.noarch                    50/183 
+  Updating   : libsss_idmap-1.16.4-37.el7_8.3.x86_64                     51/183 
+  Updating   : libsss_nss_idmap-1.16.4-37.el7_8.3.x86_64                 52/183 
+  Updating   : kernel-tools-libs-3.10.0-1127.10.1.el7.x86_64             53/183 
+  Updating   : tzdata-java-2020a-1.el7.noarch                            54/183 
+  Updating   : 1:java-1.8.0-openjdk-headless-1.8.0.252.b09-2.el7_8.x8    55/183 
+warning: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre/lib/security/java.security created as /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre/lib/security/java.security.rpmnew
+restored /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre/lib/security/java.security.rpmnew to /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre/lib/security/java.security
+  Updating   : firewalld-filesystem-0.6.3-8.el7_8.1.noarch               56/183 
+  Updating   : firewalld-0.6.3-8.el7_8.1.noarch                          57/183 
+  Updating   : firewall-config-0.6.3-8.el7_8.1.noarch                    58/183 
+  Updating   : 1:java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64         59/183 
+  Updating   : kernel-tools-3.10.0-1127.10.1.el7.x86_64                  60/183 
+  Updating   : sssd-client-1.16.4-37.el7_8.3.x86_64                      61/183 
+  Updating   : mesa-dri-drivers-18.3.4-7.el7_8.1.x86_64                  62/183 
+  Updating   : freerdp-libs-2.0.0-4.rc4.el7_8.x86_64                     63/183 
+  Updating   : mutter-3.28.3-22.el7_8.x86_64                             64/183 
+  Updating   : libvirt-daemon-kvm-4.5.0-33.el7_8.1.x86_64                65/183 
+  Updating   : libvirt-daemon-config-network-4.5.0-33.el7_8.1.x86_64     66/183 
+  Updating   : 32:bind-utils-9.11.4-16.P2.el7_8.6.x86_64                 67/183 
+  Updating   : open-vm-tools-desktop-10.3.10-2.el7_8.1.x86_64            68/183 
+  Updating   : libsmbclient-4.10.4-11.el7_8.x86_64                       69/183 
+  Updating   : xorg-x11-drv-ati-19.0.1-3.el7_7.x86_64                    70/183 
+  Updating   : mesa-libEGL-18.3.4-7.el7_8.1.x86_64                       71/183 
+  Updating   : mesa-libGL-18.3.4-7.el7_8.1.x86_64                        72/183 
+  Updating   : systemd-python-219-73.el7_8.6.x86_64                      73/183 
+  Updating   : 2:microcode_ctl-2.1-61.6.el7_8.x86_64                     74/183 
+  Updating   : unbound-libs-1.6.6-4.el7_8.x86_64                         75/183 
+  Updating   : ppp-2.4.5-34.el7_7.x86_64                                 76/183 
+  Updating   : libwvstreams-4.6.1-12.el7_8.x86_64                        77/183 
+  Updating   : bpftool-3.10.0-1127.10.1.el7.x86_64                       78/183 
+  Updating   : yum-utils-1.1.31-54.el7_8.noarch                          79/183 
+  Updating   : firefox-68.9.0-1.el7.centos.x86_64                        80/183 
+  Updating   : libexif-0.6.21-7.el7_8.x86_64                             81/183 
+  Updating   : 1:net-snmp-libs-5.7.2-48.el7_8.x86_64                     82/183 
+  Updating   : yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch           83/183 
+  Updating   : tzdata-2020a-1.el7.noarch                                 84/183 
+  Updating   : mesa-libxatracker-18.3.4-7.el7_8.1.x86_64                 85/183 
+  Updating   : iprutils-2.4.17.1-3.el7_7.x86_64                          86/183 
+  Installing : kernel-3.10.0-1127.10.1.el7.x86_64                        87/183 
+  Updating   : binutils-2.27-43.base.el7_8.1.x86_64                      88/183 
+  Updating   : python-perf-3.10.0-1127.10.1.el7.x86_64                   89/183 
+  Updating   : 32:bind-export-libs-9.11.4-16.P2.el7_8.6.x86_64           90/183 
+  Updating   : sos-3.8-8.el7.centos.noarch                               91/183 
+  Updating   : augeas-libs-1.4.0-9.el7_8.1.x86_64                        92/183 
+  Cleanup    : libvirt-daemon-kvm-4.5.0-33.el7.x86_64                    93/183 
+  Cleanup    : libsmbclient-4.10.4-10.el7.x86_64                         94/183 
+  Cleanup    : libvirt-daemon-driver-storage-4.5.0-33.el7.x86_64         95/183 
+  Cleanup    : libvirt-daemon-driver-qemu-4.5.0-33.el7.x86_64            96/183 
+  Cleanup    : samba-common-libs-4.10.4-10.el7.x86_64                    97/183 
+  Cleanup    : samba-libs-4.10.4-10.el7.x86_64                           98/183 
+  Cleanup    : libwbclient-4.10.4-10.el7.x86_64                          99/183 
+  Cleanup    : samba-client-libs-4.10.4-10.el7.x86_64                   100/183 
+  Cleanup    : libvirt-daemon-driver-nodedev-4.5.0-33.el7.x86_64        101/183 
+  Cleanup    : 32:bind-utils-9.11.4-16.P2.el7.x86_64                    102/183 
+  Cleanup    : libvirt-daemon-driver-storage-disk-4.5.0-33.el7.x86_64   103/183 
+  Cleanup    : libvirt-daemon-driver-storage-logical-4.5.0-33.el7.x86   104/183 
+  Cleanup    : 7:lvm2-2.02.186-7.el7.x86_64                             105/183 
+  Cleanup    : 7:lvm2-libs-2.02.186-7.el7.x86_64                        106/183 
+  Cleanup    : 7:device-mapper-event-1.02.164-7.el7.x86_64              107/183 
+  Cleanup    : libvirt-daemon-driver-storage-mpath-4.5.0-33.el7.x86_6   108/183 
+  Cleanup    : libvirt-daemon-driver-interface-4.5.0-33.el7.x86_64      109/183 
+  Cleanup    : 10:qemu-kvm-1.5.3-173.el7.x86_64                         110/183 
+  Cleanup    : 32:bind-libs-9.11.4-16.P2.el7.x86_64                     111/183 
+  Cleanup    : libvirt-daemon-driver-storage-scsi-4.5.0-33.el7.x86_64   112/183 
+  Cleanup    : libvirt-daemon-driver-storage-iscsi-4.5.0-33.el7.x86_6   113/183 
+  Cleanup    : libvirt-daemon-driver-storage-gluster-4.5.0-33.el7.x86   114/183 
+  Cleanup    : libvirt-daemon-driver-storage-rbd-4.5.0-33.el7.x86_64    115/183 
+  Cleanup    : libvirt-daemon-driver-storage-core-4.5.0-33.el7.x86_64   116/183 
+  Cleanup    : libvirt-daemon-driver-nwfilter-4.5.0-33.el7.x86_64       117/183 
+  Cleanup    : libvirt-daemon-driver-secret-4.5.0-33.el7.x86_64         118/183 
+  Cleanup    : mesa-libEGL-18.3.4-7.el7.x86_64                          119/183 
+  Cleanup    : open-vm-tools-desktop-10.3.10-2.el7.x86_64               120/183 
+  Cleanup    : open-vm-tools-10.3.10-2.el7.x86_64                       121/183 
+  Cleanup    : mutter-3.28.3-20.el7.x86_64                              122/183 
+  Cleanup    : systemd-python-219-73.el7.1.x86_64                       123/183 
+  Cleanup    : libvirt-daemon-config-network-4.5.0-33.el7.x86_64        124/183 
+  Cleanup    : samba-common-4.10.4-10.el7.noarch                        125/183 
+  Cleanup    : flatpak-libs-1.0.9-8.el7_7.x86_64                        126/183 
+  Cleanup    : flatpak-1.0.9-8.el7_7.x86_64                             127/183 
+  Cleanup    : firewall-config-0.6.3-8.el7.noarch                       128/183 
+  Cleanup    : firewalld-0.6.3-8.el7.noarch                             129/183 
+  Cleanup    : 2:microcode_ctl-2.1-61.el7.x86_64                        130/183 
+  Cleanup    : libvirt-daemon-driver-network-4.5.0-33.el7.x86_64        131/183 
+  Cleanup    : libvirt-daemon-4.5.0-33.el7.x86_64                       132/183 
+  Cleanup    : librdmacm-22.4-1.el7.x86_64                              133/183 
+  Cleanup    : mesa-dri-drivers-18.3.4-7.el7.x86_64                     134/183 
+  Cleanup    : xorg-x11-drv-ati-19.0.1-3.el7.x86_64                     135/183 
+  Cleanup    : sssd-client-1.16.4-37.el7.x86_64                         136/183 
+  Cleanup    : systemd-sysv-219-73.el7.1.x86_64                         137/183 
+  Cleanup    : mesa-libgbm-18.3.4-7.el7.x86_64                          138/183 
+  Cleanup    : libibverbs-22.4-1.el7.x86_64                             139/183 
+  Cleanup    : rdma-core-22.4-1.el7.x86_64                              140/183 
+  Cleanup    : libvirt-libs-4.5.0-33.el7.x86_64                         141/183 
+  Cleanup    : libgudev1-219-73.el7.1.x86_64                            142/183 
+  Cleanup    : 32:bind-libs-lite-9.11.4-16.P2.el7.x86_64                143/183 
+  Cleanup    : 10:qemu-kvm-common-1.5.3-173.el7.x86_64                  144/183 
+  Cleanup    : 7:device-mapper-event-libs-1.02.164-7.el7.x86_64         145/183 
+  Cleanup    : 7:device-mapper-1.02.164-7.el7.x86_64                    146/183 
+  Cleanup    : 7:device-mapper-libs-1.02.164-7.el7.x86_64               147/183 
+  Cleanup    : ppp-2.4.5-33.el7.x86_64                                  148/183 
+  Cleanup    : 1:java-1.8.0-openjdk-1.8.0.242.b08-1.el7.x86_64          149/183 
+  Cleanup    : 1:java-1.8.0-openjdk-headless-1.8.0.242.b08-1.el7.x86_   150/183 
+  Cleanup    : freerdp-libs-2.0.0-1.rc4.el7.x86_64                      151/183 
+  Cleanup    : libwinpr-2.0.0-1.rc4.el7.x86_64                          152/183 
+  Cleanup    : kernel-tools-3.10.0-1127.el7.x86_64                      153/183 
+  Cleanup    : unbound-libs-1.6.6-3.el7.x86_64                          154/183 
+  Cleanup    : systemd-219-73.el7.1.x86_64                              155/183 
+  Cleanup    : mesa-libGL-18.3.4-7.el7.x86_64                           156/183 
+  Cleanup    : tzdata-java-2019c-1.el7.noarch                           157/183 
+  Cleanup    : 32:bind-license-9.11.4-16.P2.el7.noarch                  158/183 
+  Cleanup    : mesa-filesystem-18.3.4-7.el7.x86_64                      159/183 
+  Cleanup    : firewalld-filesystem-0.6.3-8.el7.noarch                  160/183 
+  Cleanup    : python-firewall-0.6.3-8.el7.noarch                       161/183 
+  Cleanup    : yum-utils-1.1.31-53.el7.noarch                           162/183 
+  Cleanup    : firefox-68.5.0-2.el7.centos.x86_64                       163/183 
+  Cleanup    : yum-plugin-fastestmirror-1.1.31-53.el7.noarch            164/183 
+  Cleanup    : tzdata-2019c-1.el7.noarch                                165/183 
+  Cleanup    : sos-3.8-6.el7.centos.noarch                              166/183 
+  Cleanup    : mesa-libglapi-18.3.4-7.el7.x86_64                        167/183 
+  Cleanup    : systemd-libs-219-73.el7.1.x86_64                         168/183 
+  Cleanup    : kernel-tools-libs-3.10.0-1127.el7.x86_64                 169/183 
+  Cleanup    : libsss_idmap-1.16.4-37.el7.x86_64                        170/183 
+  Cleanup    : libsss_nss_idmap-1.16.4-37.el7.x86_64                    171/183 
+  Cleanup    : libicu-50.2-3.el7.x86_64                                 172/183 
+  Cleanup    : 10:qemu-img-1.5.3-173.el7.x86_64                         173/183 
+  Cleanup    : libwvstreams-4.6.1-11.el7.x86_64                         174/183 
+  Cleanup    : bpftool-3.10.0-1127.el7.x86_64                           175/183 
+  Cleanup    : libexif-0.6.21-6.el7.x86_64                              176/183 
+  Cleanup    : 1:net-snmp-libs-5.7.2-47.el7.x86_64                      177/183 
+  Cleanup    : mesa-libxatracker-18.3.4-7.el7.x86_64                    178/183 
+  Cleanup    : iprutils-2.4.17.1-3.el7.x86_64                           179/183 
+  Cleanup    : binutils-2.27-43.base.el7.x86_64                         180/183 
+  Cleanup    : python-perf-3.10.0-1127.el7.x86_64                       181/183 
+  Cleanup    : 32:bind-export-libs-9.11.4-16.P2.el7.x86_64              182/183 
+  Cleanup    : augeas-libs-1.4.0-9.el7.x86_64                           183/183 
+
+
+
+  Verifying  : systemd-python-219-73.el7_8.6.x86_64                       1/183 
+  Verifying  : mesa-libGL-18.3.4-7.el7_8.1.x86_64                         2/183 
+  Verifying  : libvirt-daemon-driver-storage-core-4.5.0-33.el7_8.1.x8     3/183 
+  Verifying  : 32:bind-libs-9.11.4-16.P2.el7_8.6.x86_64                   4/183 
+  Verifying  : augeas-libs-1.4.0-9.el7_8.1.x86_64                         5/183 
+  Verifying  : flatpak-1.0.9-9.el7_7.x86_64                               6/183 
+  Verifying  : 2:microcode_ctl-2.1-61.6.el7_8.x86_64                      7/183 
+  Verifying  : libvirt-daemon-driver-network-4.5.0-33.el7_8.1.x86_64      8/183 
+  Verifying  : sos-3.8-8.el7.centos.noarch                                9/183 
+  Verifying  : systemd-sysv-219-73.el7_8.6.x86_64                        10/183 
+  Verifying  : systemd-219-73.el7_8.6.x86_64                             11/183 
+  Verifying  : libvirt-daemon-driver-storage-rbd-4.5.0-33.el7_8.1.x86    12/183 
+  Verifying  : 32:bind-utils-9.11.4-16.P2.el7_8.6.x86_64                 13/183 
+  Verifying  : libvirt-daemon-driver-storage-logical-4.5.0-33.el7_8.1    14/183 
+  Verifying  : 32:bind-export-libs-9.11.4-16.P2.el7_8.6.x86_64           15/183 
+  Verifying  : open-vm-tools-10.3.10-2.el7_8.1.x86_64                    16/183 
+  Verifying  : unbound-libs-1.6.6-4.el7_8.x86_64                         17/183 
+  Verifying  : samba-client-libs-4.10.4-11.el7_8.x86_64                  18/183 
+  Verifying  : python-perf-3.10.0-1127.10.1.el7.x86_64                   19/183 
+  Verifying  : binutils-2.27-43.base.el7_8.1.x86_64                      20/183 
+  Verifying  : libvirt-daemon-driver-qemu-4.5.0-33.el7_8.1.x86_64        21/183 
+  Verifying  : mutter-3.28.3-22.el7_8.x86_64                             22/183 
+  Verifying  : 1:java-1.8.0-openjdk-headless-1.8.0.252.b09-2.el7_8.x8    23/183 
+  Verifying  : 32:bind-libs-lite-9.11.4-16.P2.el7_8.6.x86_64             24/183 
+  Verifying  : libicu-50.2-4.el7_7.x86_64                                25/183 
+  Verifying  : 10:qemu-img-1.5.3-173.el7_8.3.x86_64                      26/183 
+  Verifying  : libvirt-daemon-driver-storage-scsi-4.5.0-33.el7_8.1.x8    27/183 
+  Verifying  : libvirt-daemon-driver-storage-disk-4.5.0-33.el7_8.1.x8    28/183 
+  Verifying  : libgudev1-219-73.el7_8.6.x86_64                           29/183 
+  Verifying  : kernel-3.10.0-1127.10.1.el7.x86_64                        30/183 
+  Verifying  : firewalld-0.6.3-8.el7_8.1.noarch                          31/183 
+  Verifying  : iprutils-2.4.17.1-3.el7_7.x86_64                          32/183 
+  Verifying  : kernel-tools-3.10.0-1127.10.1.el7.x86_64                  33/183 
+  Verifying  : sssd-client-1.16.4-37.el7_8.3.x86_64                      34/183 
+  Verifying  : 7:device-mapper-libs-1.02.164-7.el7_8.2.x86_64            35/183 
+  Verifying  : 10:qemu-kvm-common-1.5.3-173.el7_8.3.x86_64               36/183 
+  Verifying  : mesa-libxatracker-18.3.4-7.el7_8.1.x86_64                 37/183 
+  Verifying  : tzdata-2020a-1.el7.noarch                                 38/183 
+  Verifying  : xorg-x11-drv-ati-19.0.1-3.el7_7.x86_64                    39/183 
+  Verifying  : firewalld-filesystem-0.6.3-8.el7_8.1.noarch               40/183 
+  Verifying  : samba-common-libs-4.10.4-11.el7_8.x86_64                  41/183 
+  Verifying  : open-vm-tools-desktop-10.3.10-2.el7_8.1.x86_64            42/183 
+  Verifying  : libvirt-daemon-kvm-4.5.0-33.el7_8.1.x86_64                43/183 
+  Verifying  : tzdata-java-2020a-1.el7.noarch                            44/183 
+  Verifying  : freerdp-libs-2.0.0-4.rc4.el7_8.x86_64                     45/183 
+  Verifying  : 7:lvm2-2.02.186-7.el7_8.2.x86_64                          46/183 
+  Verifying  : yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch           47/183 
+  Verifying  : mesa-dri-drivers-18.3.4-7.el7_8.1.x86_64                  48/183 
+  Verifying  : 7:device-mapper-1.02.164-7.el7_8.2.x86_64                 49/183 
+  Verifying  : libvirt-daemon-driver-storage-gluster-4.5.0-33.el7_8.1    50/183 
+  Verifying  : libvirt-daemon-driver-storage-4.5.0-33.el7_8.1.x86_64     51/183 
+  Verifying  : libsmbclient-4.10.4-11.el7_8.x86_64                       52/183 
+  Verifying  : kernel-tools-libs-3.10.0-1127.10.1.el7.x86_64             53/183 
+  Verifying  : systemd-libs-219-73.el7_8.6.x86_64                        54/183 
+  Verifying  : libsss_nss_idmap-1.16.4-37.el7_8.3.x86_64                 55/183 
+  Verifying  : 1:java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64         56/183 
+  Verifying  : librdmacm-22.4-2.el7_8.x86_64                             57/183 
+  Verifying  : 7:device-mapper-event-1.02.164-7.el7_8.2.x86_64           58/183 
+  Verifying  : ppp-2.4.5-34.el7_7.x86_64                                 59/183 
+  Verifying  : libvirt-daemon-driver-nodedev-4.5.0-33.el7_8.1.x86_64     60/183 
+  Verifying  : 1:net-snmp-libs-5.7.2-48.el7_8.x86_64                     61/183 
+  Verifying  : samba-common-4.10.4-11.el7_8.noarch                       62/183 
+  Verifying  : firewall-config-0.6.3-8.el7_8.1.noarch                    63/183 
+  Verifying  : libsss_idmap-1.16.4-37.el7_8.3.x86_64                     64/183 
+  Verifying  : python-firewall-0.6.3-8.el7_8.1.noarch                    65/183 
+  Verifying  : libwinpr-2.0.0-4.rc4.el7_8.x86_64                         66/183 
+  Verifying  : libvirt-daemon-driver-nwfilter-4.5.0-33.el7_8.1.x86_64    67/183 
+  Verifying  : 32:bind-license-9.11.4-16.P2.el7_8.6.noarch               68/183 
+  Verifying  : rdma-core-22.4-2.el7_8.x86_64                             69/183 
+  Verifying  : mesa-libgbm-18.3.4-7.el7_8.1.x86_64                       70/183 
+  Verifying  : libvirt-daemon-config-network-4.5.0-33.el7_8.1.x86_64     71/183 
+  Verifying  : libibverbs-22.4-2.el7_8.x86_64                            72/183 
+  Verifying  : libexif-0.6.21-7.el7_8.x86_64                             73/183 
+  Verifying  : libvirt-daemon-driver-secret-4.5.0-33.el7_8.1.x86_64      74/183 
+  Verifying  : mesa-libEGL-18.3.4-7.el7_8.1.x86_64                       75/183 
+  Verifying  : firefox-68.9.0-1.el7.centos.x86_64                        76/183 
+  Verifying  : 7:lvm2-libs-2.02.186-7.el7_8.2.x86_64                     77/183 
+  Verifying  : flatpak-libs-1.0.9-9.el7_7.x86_64                         78/183 
+  Verifying  : yum-utils-1.1.31-54.el7_8.noarch                          79/183 
+  Verifying  : bpftool-3.10.0-1127.10.1.el7.x86_64                       80/183 
+  Verifying  : libvirt-daemon-driver-storage-iscsi-4.5.0-33.el7_8.1.x    81/183 
+  Verifying  : mesa-libglapi-18.3.4-7.el7_8.1.x86_64                     82/183 
+  Verifying  : libvirt-libs-4.5.0-33.el7_8.1.x86_64                      83/183 
+  Verifying  : samba-libs-4.10.4-11.el7_8.x86_64                         84/183 
+  Verifying  : libvirt-daemon-4.5.0-33.el7_8.1.x86_64                    85/183 
+  Verifying  : 10:qemu-kvm-1.5.3-173.el7_8.3.x86_64                      86/183 
+  Verifying  : libwvstreams-4.6.1-12.el7_8.x86_64                        87/183 
+  Verifying  : libwbclient-4.10.4-11.el7_8.x86_64                        88/183 
+  Verifying  : mesa-filesystem-18.3.4-7.el7_8.1.x86_64                   89/183 
+  Verifying  : libvirt-daemon-driver-interface-4.5.0-33.el7_8.1.x86_6    90/183 
+  Verifying  : 7:device-mapper-event-libs-1.02.164-7.el7_8.2.x86_64      91/183 
+  Verifying  : libvirt-daemon-driver-storage-mpath-4.5.0-33.el7_8.1.x    92/183 
+  Verifying  : tzdata-2019c-1.el7.noarch                                 93/183 
+  Verifying  : ppp-2.4.5-33.el7.x86_64                                   94/183 
+  Verifying  : libsmbclient-4.10.4-10.el7.x86_64                         95/183 
+  Verifying  : firewalld-0.6.3-8.el7.noarch                              96/183 
+  Verifying  : libvirt-daemon-driver-storage-4.5.0-33.el7.x86_64         97/183 
+  Verifying  : libvirt-daemon-driver-qemu-4.5.0-33.el7.x86_64            98/183 
+  Verifying  : firefox-68.5.0-2.el7.centos.x86_64                        99/183 
+  Verifying  : libvirt-daemon-driver-secret-4.5.0-33.el7.x86_64         100/183 
+  Verifying  : libsss_idmap-1.16.4-37.el7.x86_64                        101/183 
+  Verifying  : mutter-3.28.3-20.el7.x86_64                              102/183 
+  Verifying  : mesa-libgbm-18.3.4-7.el7.x86_64                          103/183 
+  Verifying  : mesa-libglapi-18.3.4-7.el7.x86_64                        104/183 
+  Verifying  : firewalld-filesystem-0.6.3-8.el7.noarch                  105/183 
+  Verifying  : libvirt-daemon-driver-storage-rbd-4.5.0-33.el7.x86_64    106/183 
+  Verifying  : libwvstreams-4.6.1-11.el7.x86_64                         107/183 
+  Verifying  : libvirt-daemon-driver-interface-4.5.0-33.el7.x86_64      108/183 
+  Verifying  : flatpak-1.0.9-8.el7_7.x86_64                             109/183 
+  Verifying  : flatpak-libs-1.0.9-8.el7_7.x86_64                        110/183 
+  Verifying  : libgudev1-219-73.el7.1.x86_64                            111/183 
+  Verifying  : 32:bind-license-9.11.4-16.P2.el7.noarch                  112/183 
+  Verifying  : kernel-tools-libs-3.10.0-1127.el7.x86_64                 113/183 
+  Verifying  : 10:qemu-kvm-common-1.5.3-173.el7.x86_64                  114/183 
+  Verifying  : libvirt-libs-4.5.0-33.el7.x86_64                         115/183 
+  Verifying  : firewall-config-0.6.3-8.el7.noarch                       116/183 
+  Verifying  : unbound-libs-1.6.6-3.el7.x86_64                          117/183 
+  Verifying  : yum-utils-1.1.31-53.el7.noarch                           118/183 
+  Verifying  : python-perf-3.10.0-1127.el7.x86_64                       119/183 
+  Verifying  : 1:java-1.8.0-openjdk-1.8.0.242.b08-1.el7.x86_64          120/183 
+  Verifying  : libvirt-daemon-driver-network-4.5.0-33.el7.x86_64        121/183 
+  Verifying  : sos-3.8-6.el7.centos.noarch                              122/183 
+  Verifying  : samba-common-4.10.4-10.el7.noarch                        123/183 
+  Verifying  : 1:java-1.8.0-openjdk-headless-1.8.0.242.b08-1.el7.x86_   124/183 
+  Verifying  : libexif-0.6.21-6.el7.x86_64                              125/183 
+  Verifying  : mesa-libEGL-18.3.4-7.el7.x86_64                          126/183 
+  Verifying  : libwbclient-4.10.4-10.el7.x86_64                         127/183 
+  Verifying  : 7:lvm2-2.02.186-7.el7.x86_64                             128/183 
+  Verifying  : systemd-219-73.el7.1.x86_64                              129/183 
+  Verifying  : open-vm-tools-10.3.10-2.el7.x86_64                       130/183 
+  Verifying  : systemd-libs-219-73.el7.1.x86_64                         131/183 
+  Verifying  : samba-common-libs-4.10.4-10.el7.x86_64                   132/183 
+  Verifying  : 2:microcode_ctl-2.1-61.el7.x86_64                        133/183 
+  Verifying  : libvirt-daemon-driver-nodedev-4.5.0-33.el7.x86_64        134/183 
+  Verifying  : freerdp-libs-2.0.0-1.rc4.el7.x86_64                      135/183 
+  Verifying  : 7:device-mapper-event-1.02.164-7.el7.x86_64              136/183 
+  Verifying  : iprutils-2.4.17.1-3.el7.x86_64                           137/183 
+  Verifying  : libicu-50.2-3.el7.x86_64                                 138/183 
+  Verifying  : bpftool-3.10.0-1127.el7.x86_64                           139/183 
+  Verifying  : 1:net-snmp-libs-5.7.2-47.el7.x86_64                      140/183 
+  Verifying  : librdmacm-22.4-1.el7.x86_64                              141/183 
+  Verifying  : mesa-filesystem-18.3.4-7.el7.x86_64                      142/183 
+  Verifying  : samba-libs-4.10.4-10.el7.x86_64                          143/183 
+  Verifying  : rdma-core-22.4-1.el7.x86_64                              144/183 
+  Verifying  : sssd-client-1.16.4-37.el7.x86_64                         145/183 
+  Verifying  : systemd-python-219-73.el7.1.x86_64                       146/183 
+  Verifying  : libvirt-daemon-driver-storage-scsi-4.5.0-33.el7.x86_64   147/183 
+  Verifying  : libvirt-daemon-driver-storage-disk-4.5.0-33.el7.x86_64   148/183 
+  Verifying  : 10:qemu-img-1.5.3-173.el7.x86_64                         149/183 
+  Verifying  : libvirt-daemon-kvm-4.5.0-33.el7.x86_64                   150/183 
+  Verifying  : open-vm-tools-desktop-10.3.10-2.el7.x86_64               151/183 
+  Verifying  : tzdata-java-2019c-1.el7.noarch                           152/183 
+  Verifying  : python-firewall-0.6.3-8.el7.noarch                       153/183 
+  Verifying  : 7:device-mapper-1.02.164-7.el7.x86_64                    154/183 
+  Verifying  : mesa-libGL-18.3.4-7.el7.x86_64                           155/183 
+  Verifying  : libvirt-daemon-driver-storage-iscsi-4.5.0-33.el7.x86_6   156/183 
+  Verifying  : libvirt-daemon-4.5.0-33.el7.x86_64                       157/183 
+  Verifying  : 32:bind-libs-9.11.4-16.P2.el7.x86_64                     158/183 
+  Verifying  : samba-client-libs-4.10.4-10.el7.x86_64                   159/183 
+  Verifying  : libvirt-daemon-driver-storage-gluster-4.5.0-33.el7.x86   160/183 
+  Verifying  : libwinpr-2.0.0-1.rc4.el7.x86_64                          161/183 
+  Verifying  : yum-plugin-fastestmirror-1.1.31-53.el7.noarch            162/183 
+  Verifying  : 32:bind-utils-9.11.4-16.P2.el7.x86_64                    163/183 
+  Verifying  : augeas-libs-1.4.0-9.el7.x86_64                           164/183 
+  Verifying  : 7:device-mapper-libs-1.02.164-7.el7.x86_64               165/183 
+  Verifying  : 32:bind-export-libs-9.11.4-16.P2.el7.x86_64              166/183 
+  Verifying  : 7:device-mapper-event-libs-1.02.164-7.el7.x86_64         167/183 
+  Verifying  : xorg-x11-drv-ati-19.0.1-3.el7.x86_64                     168/183 
+  Verifying  : libibverbs-22.4-1.el7.x86_64                             169/183 
+  Verifying  : systemd-sysv-219-73.el7.1.x86_64                         170/183 
+  Verifying  : libvirt-daemon-driver-storage-mpath-4.5.0-33.el7.x86_6   171/183 
+  Verifying  : libvirt-daemon-driver-storage-core-4.5.0-33.el7.x86_64   172/183 
+  Verifying  : libvirt-daemon-config-network-4.5.0-33.el7.x86_64        173/183 
+  Verifying  : 10:qemu-kvm-1.5.3-173.el7.x86_64                         174/183 
+  Verifying  : binutils-2.27-43.base.el7.x86_64                         175/183 
+  Verifying  : kernel-tools-3.10.0-1127.el7.x86_64                      176/183 
+  Verifying  : 7:lvm2-libs-2.02.186-7.el7.x86_64                        177/183 
+  Verifying  : mesa-libxatracker-18.3.4-7.el7.x86_64                    178/183 
+  Verifying  : mesa-dri-drivers-18.3.4-7.el7.x86_64                     179/183 
+  Verifying  : libsss_nss_idmap-1.16.4-37.el7.x86_64                    180/183 
+  Verifying  : 32:bind-libs-lite-9.11.4-16.P2.el7.x86_64                181/183 
+  Verifying  : libvirt-daemon-driver-nwfilter-4.5.0-33.el7.x86_64       182/183 
+  Verifying  : libvirt-daemon-driver-storage-logical-4.5.0-33.el7.x86   183/183 
+
+Installed:
+  kernel.x86_64 0:3.10.0-1127.10.1.el7                                          
+
+Updated:
+  augeas-libs.x86_64 0:1.4.0-9.el7_8.1                                          
+  bind-export-libs.x86_64 32:9.11.4-16.P2.el7_8.6                               
+  bind-libs.x86_64 32:9.11.4-16.P2.el7_8.6                                      
+  bind-libs-lite.x86_64 32:9.11.4-16.P2.el7_8.6                                 
+  bind-license.noarch 32:9.11.4-16.P2.el7_8.6                                   
+  bind-utils.x86_64 32:9.11.4-16.P2.el7_8.6                                     
+  binutils.x86_64 0:2.27-43.base.el7_8.1                                        
+  bpftool.x86_64 0:3.10.0-1127.10.1.el7                                         
+  device-mapper.x86_64 7:1.02.164-7.el7_8.2                                     
+  device-mapper-event.x86_64 7:1.02.164-7.el7_8.2                               
+  device-mapper-event-libs.x86_64 7:1.02.164-7.el7_8.2                          
+  device-mapper-libs.x86_64 7:1.02.164-7.el7_8.2                                
+  firefox.x86_64 0:68.9.0-1.el7.centos                                          
+  firewall-config.noarch 0:0.6.3-8.el7_8.1                                      
+  firewalld.noarch 0:0.6.3-8.el7_8.1                                            
+  firewalld-filesystem.noarch 0:0.6.3-8.el7_8.1                                 
+  flatpak.x86_64 0:1.0.9-9.el7_7                                                
+  flatpak-libs.x86_64 0:1.0.9-9.el7_7                                           
+  freerdp-libs.x86_64 0:2.0.0-4.rc4.el7_8                                       
+  iprutils.x86_64 0:2.4.17.1-3.el7_7                                            
+  java-1.8.0-openjdk.x86_64 1:1.8.0.252.b09-2.el7_8                             
+  java-1.8.0-openjdk-headless.x86_64 1:1.8.0.252.b09-2.el7_8                    
+  kernel-tools.x86_64 0:3.10.0-1127.10.1.el7                                    
+  kernel-tools-libs.x86_64 0:3.10.0-1127.10.1.el7                               
+  libexif.x86_64 0:0.6.21-7.el7_8                                               
+  libgudev1.x86_64 0:219-73.el7_8.6                                             
+  libibverbs.x86_64 0:22.4-2.el7_8                                              
+  libicu.x86_64 0:50.2-4.el7_7                                                  
+  librdmacm.x86_64 0:22.4-2.el7_8                                               
+  libsmbclient.x86_64 0:4.10.4-11.el7_8                                         
+  libsss_idmap.x86_64 0:1.16.4-37.el7_8.3                                       
+  libsss_nss_idmap.x86_64 0:1.16.4-37.el7_8.3                                   
+  libvirt-daemon.x86_64 0:4.5.0-33.el7_8.1                                      
+  libvirt-daemon-config-network.x86_64 0:4.5.0-33.el7_8.1                       
+  libvirt-daemon-driver-interface.x86_64 0:4.5.0-33.el7_8.1                     
+  libvirt-daemon-driver-network.x86_64 0:4.5.0-33.el7_8.1                       
+  libvirt-daemon-driver-nodedev.x86_64 0:4.5.0-33.el7_8.1                       
+  libvirt-daemon-driver-nwfilter.x86_64 0:4.5.0-33.el7_8.1                      
+  libvirt-daemon-driver-qemu.x86_64 0:4.5.0-33.el7_8.1                          
+  libvirt-daemon-driver-secret.x86_64 0:4.5.0-33.el7_8.1                        
+  libvirt-daemon-driver-storage.x86_64 0:4.5.0-33.el7_8.1                       
+  libvirt-daemon-driver-storage-core.x86_64 0:4.5.0-33.el7_8.1                  
+  libvirt-daemon-driver-storage-disk.x86_64 0:4.5.0-33.el7_8.1                  
+  libvirt-daemon-driver-storage-gluster.x86_64 0:4.5.0-33.el7_8.1               
+  libvirt-daemon-driver-storage-iscsi.x86_64 0:4.5.0-33.el7_8.1                 
+  libvirt-daemon-driver-storage-logical.x86_64 0:4.5.0-33.el7_8.1               
+  libvirt-daemon-driver-storage-mpath.x86_64 0:4.5.0-33.el7_8.1                 
+  libvirt-daemon-driver-storage-rbd.x86_64 0:4.5.0-33.el7_8.1                   
+  libvirt-daemon-driver-storage-scsi.x86_64 0:4.5.0-33.el7_8.1                  
+  libvirt-daemon-kvm.x86_64 0:4.5.0-33.el7_8.1                                  
+  libvirt-libs.x86_64 0:4.5.0-33.el7_8.1                                        
+  libwbclient.x86_64 0:4.10.4-11.el7_8                                          
+  libwinpr.x86_64 0:2.0.0-4.rc4.el7_8                                           
+  libwvstreams.x86_64 0:4.6.1-12.el7_8                                          
+  lvm2.x86_64 7:2.02.186-7.el7_8.2                                              
+  lvm2-libs.x86_64 7:2.02.186-7.el7_8.2                                         
+  mesa-dri-drivers.x86_64 0:18.3.4-7.el7_8.1                                    
+  mesa-filesystem.x86_64 0:18.3.4-7.el7_8.1                                     
+  mesa-libEGL.x86_64 0:18.3.4-7.el7_8.1                                         
+  mesa-libGL.x86_64 0:18.3.4-7.el7_8.1                                          
+  mesa-libgbm.x86_64 0:18.3.4-7.el7_8.1                                         
+  mesa-libglapi.x86_64 0:18.3.4-7.el7_8.1                                       
+  mesa-libxatracker.x86_64 0:18.3.4-7.el7_8.1                                   
+  microcode_ctl.x86_64 2:2.1-61.6.el7_8                                         
+  mutter.x86_64 0:3.28.3-22.el7_8                                               
+  net-snmp-libs.x86_64 1:5.7.2-48.el7_8                                         
+  open-vm-tools.x86_64 0:10.3.10-2.el7_8.1                                      
+  open-vm-tools-desktop.x86_64 0:10.3.10-2.el7_8.1                              
+  ppp.x86_64 0:2.4.5-34.el7_7                                                   
+  python-firewall.noarch 0:0.6.3-8.el7_8.1                                      
+  python-perf.x86_64 0:3.10.0-1127.10.1.el7                                     
+  qemu-img.x86_64 10:1.5.3-173.el7_8.3                                          
+  qemu-kvm.x86_64 10:1.5.3-173.el7_8.3                                          
+  qemu-kvm-common.x86_64 10:1.5.3-173.el7_8.3                                   
+  rdma-core.x86_64 0:22.4-2.el7_8                                               
+  samba-client-libs.x86_64 0:4.10.4-11.el7_8                                    
+  samba-common.noarch 0:4.10.4-11.el7_8                                         
+  samba-common-libs.x86_64 0:4.10.4-11.el7_8                                    
+  samba-libs.x86_64 0:4.10.4-11.el7_8                                           
+  sos.noarch 0:3.8-8.el7.centos                                                 
+  sssd-client.x86_64 0:1.16.4-37.el7_8.3                                        
+  systemd.x86_64 0:219-73.el7_8.6                                               
+  systemd-libs.x86_64 0:219-73.el7_8.6                                          
+  systemd-python.x86_64 0:219-73.el7_8.6                                        
+  systemd-sysv.x86_64 0:219-73.el7_8.6                                          
+  tzdata.noarch 0:2020a-1.el7                                                   
+  tzdata-java.noarch 0:2020a-1.el7                                              
+  unbound-libs.x86_64 0:1.6.6-4.el7_8                                           
+  xorg-x11-drv-ati.x86_64 0:19.0.1-3.el7_7                                      
+  yum-plugin-fastestmirror.noarch 0:1.1.31-54.el7_8                             
+  yum-utils.noarch 0:1.1.31-54.el7_8                                            
+
+Complete!
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# ## yum upadted now
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# yum install rh-pyhton36
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+No package rh-pyhton36 available.
+Error: Nothing to do
+[root@localhost umair]# yum install centos-release-scl
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package centos-release-scl.noarch 0:2-3.el7.centos will be installed
+--> Processing Dependency: centos-release-scl-rh for package: centos-release-scl-2-3.el7.centos.noarch
+--> Running transaction check
+---> Package centos-release-scl-rh.noarch 0:2-3.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                    Arch        Version               Repository   Size
+================================================================================
+Installing:
+ centos-release-scl         noarch      2-3.el7.centos        extras       12 k
+Installing for dependencies:
+ centos-release-scl-rh      noarch      2-3.el7.centos        extras       12 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 24 k
+Installed size: 39 k
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/2): centos-release-scl-rh-2-3.el7.centos.noarch.rpm     |  12 kB   00:02     
+(2/2): centos-release-scl-2-3.el7.centos.noarch.rpm        |  12 kB   00:04     
+--------------------------------------------------------------------------------
+Total                                              4.8 kB/s |  24 kB  00:04     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : centos-release-scl-rh-2-3.el7.centos.noarch                  1/2 
+  Installing : centos-release-scl-2-3.el7.centos.noarch                     2/2 
+  Verifying  : centos-release-scl-2-3.el7.centos.noarch                     1/2 
+  Verifying  : centos-release-scl-rh-2-3.el7.centos.noarch                  2/2 
+
+Installed:
+  centos-release-scl.noarch 0:2-3.el7.centos                                    
+
+Dependency Installed:
+  centos-release-scl-rh.noarch 0:2-3.el7.centos                                 
+
+Complete!
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# 
+[root@localhost umair]# yum install rh-python36
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * centos-sclo-rh: centos.mirrors.estointernet.in
+ * centos-sclo-sclo: centos.mirrors.estointernet.in
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+centos-sclo-rh                                           | 3.0 kB     00:00     
+centos-sclo-sclo                                         | 3.0 kB     00:00     
+(1/2): centos-sclo-sclo/x86_64/primary_db                  | 289 kB   00:05     
+(2/2): centos-sclo-rh/x86_64/primary_db                    | 2.6 MB   00:16     
+Resolving Dependencies
+--> Running transaction check
+---> Package rh-python36.x86_64 0:2.0-1.el7 will be installed
+--> Processing Dependency: rh-python36-runtime for package: rh-python36-2.0-1.el7.x86_64
+--> Processing Dependency: rh-python36-python for package: rh-python36-2.0-1.el7.x86_64
+--> Processing Dependency: rh-python36-python-pip for package: rh-python36-2.0-1.el7.x86_64
+--> Processing Dependency: rh-python36-python-setuptools for package: rh-python36-2.0-1.el7.x86_64
+--> Processing Dependency: rh-python36-python-virtualenv for package: rh-python36-2.0-1.el7.x86_64
+--> Running transaction check
+---> Package rh-python36-python.x86_64 0:3.6.9-2.el7 will be installed
+--> Processing Dependency: rh-python36-python-libs(x86-64) = 3.6.9-2.el7 for package: rh-python36-python-3.6.9-2.el7.x86_64
+--> Processing Dependency: libpython3.6m.so.rh-python36-1.0()(64bit) for package: rh-python36-python-3.6.9-2.el7.x86_64
+---> Package rh-python36-python-pip.noarch 0:9.0.1-2.el7 will be installed
+---> Package rh-python36-python-setuptools.noarch 0:36.5.0-1.el7 will be installed
+---> Package rh-python36-python-virtualenv.noarch 0:15.1.0-2.el7 will be installed
+--> Processing Dependency: rh-python36-python-devel for package: rh-python36-python-virtualenv-15.1.0-2.el7.noarch
+---> Package rh-python36-runtime.x86_64 0:2.0-1.el7 will be installed
+--> Running transaction check
+---> Package rh-python36-python-devel.x86_64 0:3.6.9-2.el7 will be installed
+--> Processing Dependency: scl-utils-build for package: rh-python36-python-devel-3.6.9-2.el7.x86_64
+---> Package rh-python36-python-libs.x86_64 0:3.6.9-2.el7 will be installed
+--> Running transaction check
+---> Package scl-utils-build.x86_64 0:20130529-19.el7 will be installed
+--> Processing Dependency: redhat-rpm-config for package: scl-utils-build-20130529-19.el7.x86_64
+--> Running transaction check
+---> Package redhat-rpm-config.noarch 0:9.1.0-88.el7.centos will be installed
+--> Processing Dependency: dwz >= 0.4 for package: redhat-rpm-config-9.1.0-88.el7.centos.noarch
+--> Processing Dependency: python-srpm-macros for package: redhat-rpm-config-9.1.0-88.el7.centos.noarch
+--> Processing Dependency: perl-srpm-macros for package: redhat-rpm-config-9.1.0-88.el7.centos.noarch
+--> Running transaction check
+---> Package dwz.x86_64 0:0.11-3.el7 will be installed
+---> Package perl-srpm-macros.noarch 0:1-8.el7 will be installed
+---> Package python-srpm-macros.noarch 0:3-32.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                       Arch   Version              Repository      Size
+================================================================================
+Installing:
+ rh-python36                   x86_64 2.0-1.el7            centos-sclo-rh 2.7 k
+Installing for dependencies:
+ dwz                           x86_64 0.11-3.el7           base            99 k
+ perl-srpm-macros              noarch 1-8.el7              base           4.6 k
+ python-srpm-macros            noarch 3-32.el7             base           8.4 k
+ redhat-rpm-config             noarch 9.1.0-88.el7.centos  base            81 k
+ rh-python36-python            x86_64 3.6.9-2.el7          centos-sclo-rh  56 k
+ rh-python36-python-devel      x86_64 3.6.9-2.el7          centos-sclo-rh 841 k
+ rh-python36-python-libs       x86_64 3.6.9-2.el7          centos-sclo-rh 7.6 M
+ rh-python36-python-pip        noarch 9.0.1-2.el7          centos-sclo-rh 1.7 M
+ rh-python36-python-setuptools noarch 36.5.0-1.el7         centos-sclo-rh 566 k
+ rh-python36-python-virtualenv noarch 15.1.0-2.el7         centos-sclo-rh 1.8 M
+ rh-python36-runtime           x86_64 2.0-1.el7            centos-sclo-rh 1.1 M
+ scl-utils-build               x86_64 20130529-19.el7      base            18 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+12 Dependent packages)
+
+Total download size: 14 M
+Installed size: 56 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/13): perl-srpm-macros-1-8.el7.noarch.rpm                | 4.6 kB   00:02     
+(2/13): python-srpm-macros-3-32.el7.noarch.rpm             | 8.4 kB   00:02     
+(3/13): dwz-0.11-3.el7.x86_64.rpm                          |  99 kB   00:03     
+warning: /var/cache/yum/x86_64/7/centos-sclo-rh/packages/rh-python36-2.0-1.el7.x86_64.rpm: Header V4 RSA/SHA1 Signature, key ID f2ee9d55: NOKEY
+Public key for rh-python36-2.0-1.el7.x86_64.rpm is not installed
+(4/13): rh-python36-2.0-1.el7.x86_64.rpm                   | 2.7 kB   00:01     
+(5/13): redhat-rpm-config-9.1.0-88.el7.centos.noarch.rpm   |  81 kB   00:01     
+(6/13): rh-python36-python-3.6.9-2.el7.x86_64.rpm          |  56 kB   00:02     
+(7/13): rh-python36-python-devel-3.6.9-2.el7.x86_64.rpm    | 841 kB   00:18     
+(8/13): rh-python36-python-setuptools-36.5.0-1.el7.noarch. | 566 kB   00:21     
+(9/13): rh-python36-python-virtualenv-15.1.0-2.el7.noarch. | 1.8 MB   00:25     
+(10/13): rh-python36-runtime-2.0-1.el7.x86_64.rpm          | 1.1 MB   00:10     
+(11/13): scl-utils-build-20130529-19.el7.x86_64.rpm        |  18 kB   00:08     
+(12/13): rh-python36-python-pip-9.0.1-2.el7.noarch.rpm     | 1.7 MB   00:29     
+(13/13): rh-python36-python-libs-3.6.9-2.el7.x86_64.rpm    | 7.6 MB   00:58     
+--------------------------------------------------------------------------------
+Total                                              231 kB/s |  14 MB  01:01     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+Importing GPG key 0xF2EE9D55:
+ Userid     : "CentOS SoftwareCollections SIG (https://wiki.centos.org/SpecialInterestGroup/SCLo) <security@centos.org>"
+ Fingerprint: c4db d535 b1fb ba14 f8ba 64a8 4eb8 4e71 f2ee 9d55
+ Package    : centos-release-scl-rh-2-3.el7.centos.noarch (@extras)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : rh-python36-runtime-2.0-1.el7.x86_64                        1/13 
+  Installing : rh-python36-python-pip-9.0.1-2.el7.noarch                   2/13 
+  Installing : rh-python36-python-libs-3.6.9-2.el7.x86_64                  3/13 
+  Installing : rh-python36-python-3.6.9-2.el7.x86_64                       4/13 
+  Installing : rh-python36-python-setuptools-36.5.0-1.el7.noarch           5/13 
+  Installing : python-srpm-macros-3-32.el7.noarch                          6/13 
+  Installing : dwz-0.11-3.el7.x86_64                                       7/13 
+  Installing : perl-srpm-macros-1-8.el7.noarch                             8/13 
+  Installing : redhat-rpm-config-9.1.0-88.el7.centos.noarch                9/13 
+  Installing : scl-utils-build-20130529-19.el7.x86_64                     10/13 
+  Installing : rh-python36-python-devel-3.6.9-2.el7.x86_64                11/13 
+  Installing : rh-python36-python-virtualenv-15.1.0-2.el7.noarch          12/13 
+  Installing : rh-python36-2.0-1.el7.x86_64                               13/13 
+  Verifying  : rh-python36-runtime-2.0-1.el7.x86_64                        1/13 
+  Verifying  : rh-python36-2.0-1.el7.x86_64                                2/13 
+  Verifying  : rh-python36-python-virtualenv-15.1.0-2.el7.noarch           3/13 
+  Verifying  : perl-srpm-macros-1-8.el7.noarch                             4/13 
+  Verifying  : rh-python36-python-devel-3.6.9-2.el7.x86_64                 5/13 
+  Verifying  : dwz-0.11-3.el7.x86_64                                       6/13 
+  Verifying  : rh-python36-python-pip-9.0.1-2.el7.noarch                   7/13 
+  Verifying  : rh-python36-python-3.6.9-2.el7.x86_64                       8/13 
+  Verifying  : rh-python36-python-libs-3.6.9-2.el7.x86_64                  9/13 
+  Verifying  : redhat-rpm-config-9.1.0-88.el7.centos.noarch               10/13 
+  Verifying  : rh-python36-python-setuptools-36.5.0-1.el7.noarch          11/13 
+  Verifying  : python-srpm-macros-3-32.el7.noarch                         12/13 
+  Verifying  : scl-utils-build-20130529-19.el7.x86_64                     13/13 
+
+Installed:
+  rh-python36.x86_64 0:2.0-1.el7                                                
+
+Dependency Installed:
+  dwz.x86_64 0:0.11-3.el7                                                       
+  perl-srpm-macros.noarch 0:1-8.el7                                             
+  python-srpm-macros.noarch 0:3-32.el7                                          
+  redhat-rpm-config.noarch 0:9.1.0-88.el7.centos                                
+  rh-python36-python.x86_64 0:3.6.9-2.el7                                       
+  rh-python36-python-devel.x86_64 0:3.6.9-2.el7                                 
+  rh-python36-python-libs.x86_64 0:3.6.9-2.el7                                  
+  rh-python36-python-pip.noarch 0:9.0.1-2.el7                                   
+  rh-python36-python-setuptools.noarch 0:36.5.0-1.el7                           
+  rh-python36-python-virtualenv.noarch 0:15.1.0-2.el7                           
+  rh-python36-runtime.x86_64 0:2.0-1.el7                                        
+  scl-utils-build.x86_64 0:20130529-19.el7                                      
+
+Complete!
+[root@localhost umair]# pyhton --version
+bash: pyhton: command not found...
+Similar command is: 'python'
+[root@localhost umair]# python --version
+Python 2.7.5
+[root@localhost umair]# ^C
+[root@localhost umair]# ^C
+[root@localhost umair]# 
+

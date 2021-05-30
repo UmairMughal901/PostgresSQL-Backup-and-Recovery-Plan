@@ -1,0 +1,122 @@
+First of all update server
+
+yum update
+Change hostname at your server if needed
+
+hostnamectl set-hostname pgadmin.yobicloud.local
+Download and install POSTGRESQL packages
+
+yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm -y
+Install EPEL
+
+yum install epel-release
+Now we are ready to install last pgAdmin4 version from repo
+
+yum install pgadmin4
+Once the installation finished without any problem, let’s create a file for pgadmin configuration
+
+vi /usr/lib/python3.6/site-packages/pgadmin4-web/config_distro.py
+And add this text:
+
+LOG_FILE = '/var/log/pgadmin4/pgadmin4.log'
+SQLITE_PATH = '/var/lib/pgadmin4/pgadmin4.db'
+SESSION_DB_PATH = '/var/lib/pgadmin4/sessions'
+STORAGE_DIR = '/var/lib/pgadmin4/storage'
+SERVER_MODE =  TRUE 
+Now is time to setup the admin account that will manage your installation, follow the wizard and after the application will start
+
+python /usr/lib/python3.6/site-packages/pgadmin4-web/setup.py
+Email address: admin@yobicloud.local
+Password:Type the Password
+Retype password:Retype the Password
+pgAdmin 4 - Application Initialisation
+======================================
+CTRL+C   to shutdown pgadmin
+
+Set the proper permission to write in the folders
+
+chown -R apache:apache /var/lib/pgadmin4
+chown -R apache:apache /var/log/pgadmin4
+chcon -R -t httpd_sys_content_rw_t "/var/log/pgadmin4/"
+chcon -R -t httpd_sys_content_rw_t "/var/lib/pgadmin4/"
+If you have problem to start the application we suggest to deactivate SElinux.
+
+After everything working well let’s go ahead with the certificate creation to use for HTTPS protection
+
+yum install mod_ssl
+cd /etc/ssl/certs
+mkdir /etc/ssl/private
+chmod 700 /etc/ssl/private
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/sslcert.key -out /etc/ssl/certs/sslcert.crt
+openssl dhparam -out /etc/ssl/certs/dhgroup.pem 2048
+cat /etc/ssl/certs/dhgroup.pem | sudo tee -a /etc/ssl/certs/sslcert.crt
+Create and edit the file in the apache path for pgadmin
+
+vi /etc/httpd/conf.d/pgadmin4.conf
+Add the text below:
+
+<VirtualHost *:80>
+ServerName (your ip or host)
+Redirect permanent / https://(your ip or host)/browser/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName (your ip or host)
+        SSLEngine on
+        SSLCertificateFile /etc/ssl/certs/sslcert.crt  
+SSLCertificateKeyFile /etc/ssl/private/sslcert.key 
+ WSGIDaemonProcess pgadmin processes=1 threads=25 
+ WSGIScriptAlias / /usr/lib/python2.7/site-packages/pgadmin4-web/pgAdmin4.wsgi 
+<Directory "/usr/lib/python2.7/site-packages/pgadmin4-web/"> 
+ WSGIProcessGroup pgadmin 
+ WSGIApplicationGroup %{GLOBAL} 
+ Require all granted 
+</Directory> 
+</VirtualHost>
+Create a file that redirect any connection from port 80 (HTTP) to port 443 (HTTPS)
+
+vi /etc/httpd/conf.d/non-ssl.conf
+Add the text below:
+
+<VirtualHost *:80>
+ServerName (your ip or host)
+Redirect permanent / https://(your ip or host)
+</VirtualHost>
+Edit the main SSL config file for all HTTPS connection with some hardening tips
+
+vi /etc/httpd/conf.d/ssl.conf
+Uncomment:
+
+DocumentRoot "/var/www/html" 
+ServerName 192.168.24.20:443
+Comment:
+
+# SSLProtocol all -SSLv2 
+# SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5:!SEED:!IDEA
+Edit the certificate files path:
+
+SSLCertificateFile /etc/ssl/certs/sslcert.crt
+SSLCertificateKeyFile /etc/ssl/private/sslcert.key
+Add this text somewhere in the file:
+
+SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH 
+SSLProtocol All -SSLv2 -SSLv3 
+SSLHonorCipherOrder On 
+Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains" 
+Header always set X-Frame-Options DENY 
+Header always set X-Content-Type-Options nosniff
+The firewall if active need the ports to be open to properly allow you to use the web services.
+
+After everything working well let’s go ahead with the certificate creation to use for HTTPS protection
+
+firewall-cmd --permanent --add-service=https
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+Restart Apache service and enable it to start-up at OS boot
+
+systemctl restart httpd
+systemctl enable httpd
+Test Apache config and set SElinux exception on it.
+
+apachectl configtest
+setsebool -P httpd_can_network_connect 1

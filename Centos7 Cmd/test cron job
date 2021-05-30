@@ -1,0 +1,226 @@
+##make sh file##
+cat crontest.sh
+
+#!/bin/bash
+
+today=$(date)
+
+touch /home/darren/script/"$today"
+##run that file by command
+./crontest.sh
+##check what is the result of that run
+ll
+##it will show the list file
+## now remove the ccreated file
+rm path of file
+## now we are going to schedule task by crontab
+crontab -e
+press i
+***** /home/darren/scripts/crontest.sh
+
+wq!
+ls
+crontab -e
+*/5**** /home/darren/scripts/crontest.sh
+0 0 * * *
+## visit crontab.guru
+
+
+########################################################
+#####################################################
+[umair@localhost ~]$ ##create sh file for cron job
+[umair@localhost ~]$ cat cronjobtest.sh
+cat: cronjobtest.sh: No such file or directory
+[umair@localhost ~]$ pqwd
+bash: pqwd: command not found...
+[umair@localhost ~]$ pwd
+/home/umair
+[umair@localhost ~]$ cd tmp
+bash: cd: tmp: No such file or directory
+[umair@localhost ~]$ cd /
+[umair@localhost /]$ pwd
+/
+[umair@localhost /]$ cd tmp
+[umair@localhost tmp]$ pwd
+/tmp
+[umair@localhost tmp]$ cd tempfile/cron
+[umair@localhost cron]$ pwd
+/tmp/tempfile/cron
+[umair@localhost cron]$ ls
+cronjobtest.sh
+[umair@localhost cron]$ cat cronjobtest.sh
+#!/bin/bash
+
+today=$(date)
+
+touch /home/darren/script/"$today"
+[umair@localhost cron]$ cat cronjobtest.sh
+#!/bin/bash
+
+today=$(date)
+
+touch /tmp/tempfile/cron/"$today"
+[umair@localhost cron]$ ##lets try to run that file
+[umair@localhost cron]$ ll
+total 4
+-rw-r--r--. 1 umair umair 62 Jun 25 23:51 cronjobtest.sh
+[umair@localhost cron]$ ##now here only one file
+[umair@localhost cron]$ ./cronjobtest.sh
+bash: ./cronjobtest.sh: Permission denied
+[umair@localhost cron]$ ./cronjobtest.sh
+bash: ./cronjobtest.sh: Permission denied
+[umair@localhost cron]$ ll
+total 4
+-rw-rw-rw-. 1 umair umair 62 Jun 25 23:51 cronjobtest.sh
+[umair@localhost cron]$ ls
+cronjobtest.sh
+[umair@localhost cron]$ cat cronjobtest.sh
+#!/bin/bash
+
+today=$(date)
+
+touch /tmp/tempfile/cron/"$today"
+[umair@localhost cron]$  ./cronjobtest.sh
+bash: ./cronjobtest.sh: Permission denied
+[umair@localhost cron]$  ./cronjobtest.sh
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-rw-r--. 1 umair umair  0 Jun 25 23:55 Thu Jun 25 23:55:26 PKT 2020
+[umair@localhost cron]$ ## now we have two file in that folder
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-rw-r--. 1 umair umair  0 Jun 25 23:55 Thu Jun 25 23:55:26 PKT 2020
+[umair@localhost cron]$ ## now run again 
+[umair@localhost cron]$  ./cronjobtest.sh
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-rw-r--. 1 umair umair  0 Jun 25 23:55 Thu Jun 25 23:55:26 PKT 2020
+-rw-rw-r--. 1 umair umair  0 Jun 25 23:56 Thu Jun 25 23:56:07 PKT 2020
+[umair@localhost cron]$ its making files
+bash: its: command not found...
+[umair@localhost cron]$ ##lets remove these files
+[umair@localhost cron]$ rm Thu Jun 25 23:55:26 PKT 2020
+rm: cannot remove ‘Thu’: No such file or directory
+rm: cannot remove ‘Jun’: No such file or directory
+rm: cannot remove ‘25’: No such file or directory
+rm: cannot remove ‘23:55:26’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020’: No such file or directory
+[umair@localhost cron]$ rm Thu Jun 25 23:55:26 PKT 2020
+rm: cannot remove ‘Thu’: No such file or directory
+rm: cannot remove ‘Jun’: No such file or directory
+rm: cannot remove ‘25’: No such file or directory
+rm: cannot remove ‘23:55:26’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020’: No such file or directory
+[umair@localhost cron]$ rm --help
+Usage: rm [OPTION]... FILE...
+Remove (unlink) the FILE(s).
+
+  -f, --force           ignore nonexistent files and arguments, never prompt
+  -i                    prompt before every removal
+  -I                    prompt once before removing more than three files, or
+                          when removing recursively; less intrusive than -i,
+                          while still giving protection against most mistakes
+      --interactive[=WHEN]  prompt according to WHEN: never, once (-I), or
+                          always (-i); without WHEN, prompt always
+      --one-file-system  when removing a hierarchy recursively, skip any
+                          directory that is on a file system different from
+                          that of the corresponding command line argument
+      --no-preserve-root  do not treat '/' specially
+      --preserve-root   do not remove '/' (default)
+  -r, -R, --recursive   remove directories and their contents recursively
+  -d, --dir             remove empty directories
+  -v, --verbose         explain what is being done
+      --help     display this help and exit
+      --version  output version information and exit
+
+By default, rm does not remove directories.  Use the --recursive (-r or -R)
+option to remove each listed directory, too, along with all of its contents.
+
+To remove a file whose name starts with a '-', for example '-foo',
+use one of these commands:
+  rm -- -foo
+
+  rm ./-foo
+
+Note that if you use rm to remove a file, it might be possible to recover
+some of its contents, given sufficient expertise and/or time.  For greater
+assurance that the contents are truly unrecoverable, consider using shred.
+
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+For complete documentation, run: info coreutils 'rm invocation'
+[umair@localhost cron]$ rm -f -v Thu Jun 25 23:55:26 PKT 2020.txt
+[umair@localhost cron]$ ls
+cronjobtest.sh  Thu Jun 25 23:55:26 PKT 2020  Thu Jun 25 23:56:07 PKT 2020
+[umair@localhost cron]$ rm -f Thu Jun 25 23:55:26 PKT 2020.txt
+[umair@localhost cron]$ rm Thu Jun 25 23:55:26 PKT 2020.txt
+rm: cannot remove ‘Thu’: No such file or directory
+rm: cannot remove ‘Jun’: No such file or directory
+rm: cannot remove ‘25’: No such file or directory
+rm: cannot remove ‘23:55:26’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020.txt’: No such file or directory
+[umair@localhost cron]$ rm Thu Jun 25 23:55:26 PKT 2020.text
+rm: cannot remove ‘Thu’: No such file or directory
+rm: cannot remove ‘Jun’: No such file or directory
+rm: cannot remove ‘25’: No such file or directory
+rm: cannot remove ‘23:55:26’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020.text’: No such file or directory
+[umair@localhost cron]$ rm Thu Jun 25 23:55:26 PKT 2020.txt
+rm: cannot remove ‘Thu’: No such file or directory
+rm: cannot remove ‘Jun’: No such file or directory
+rm: cannot remove ‘25’: No such file or directory
+rm: cannot remove ‘23:55:26’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020.txt’: No such file or directory
+[umair@localhost cron]$ rm Thu/ Jun/ 25/ 23:55:26/ PKT 2020
+rm: cannot remove ‘Thu/’: No such file or directory
+rm: cannot remove ‘Jun/’: No such file or directory
+rm: cannot remove ‘25/’: No such file or directory
+rm: cannot remove ‘23:55:26/’: No such file or directory
+rm: cannot remove ‘PKT’: No such file or directory
+rm: cannot remove ‘2020’: No such file or directory
+[umair@localhost cron]$ rm Thu/Jun/25/23:55:26/PKT/2020
+rm: cannot remove ‘Thu/Jun/25/23:55:26/PKT/2020’: No such file or directory
+[umair@localhost cron]$ ## i removed from GUI
+[umair@localhost cron]$ ##Lets schedule task by crontab
+[umair@localhost cron]$ crontab -e
+no crontab for umair - using an empty one
+crontab: installing new crontab
+[umair@localhost cron]$ ls
+cronjobtest.sh  Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-r--r--. 1 umair umair  0 Jun 26 00:14 Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ## each mintue it will create job
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-r--r--. 1 umair umair  0 Jun 26 00:14 Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ls
+cronjobtest.sh  Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-r--r--. 1 umair umair  0 Jun 26 00:14 Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-r--r--. 1 umair umair  0 Jun 26 00:14 Fri Jun 26 00:14:02 PKT 2020
+[umair@localhost cron]$ ll
+total 4
+-rwxrwxrwx. 1 umair wheel 62 Jun 25 23:51 cronjobtest.sh
+-rw-r--r--. 1 umair umair  0 Jun 26 00:14 Fri Jun 26 00:14:02 PKT 2020
+-rw-r--r--. 1 umair umair  0 Jun 26 00:15 Fri Jun 26 00:15:01 PKT 2020
+[umair@localhost cron]$ ## now two files
+[umair@localhost cron]$ that all
+bash: that: command not found...
+[umair@localhost cron]$ 
+
+

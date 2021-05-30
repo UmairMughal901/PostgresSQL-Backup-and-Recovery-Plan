@@ -1,0 +1,195 @@
+Basic Configuration
+Query or System Locale
+localectl
+Display the Current Time and Date
+date timedatectl
+Sync Date and Time
+timedatectl
+Configure SSH
+/etc/ssh/ssh_config
+/etc/ssh/sshd_config
+
+Jobs And Services
+List all Services
+systemctl -at service
+ls /etc/systemd/system/*.service
+ls /usr/lib/systemd/system/*.service
+List Services that are Running
+systemctl -t service –state=active
+Start and Stop services. Replace <service> with the name of the service
+systemctl start <service>
+systemctl stop <service>
+Enable and Disable Services. Replace <service> with the name of the service
+systemctl enable <service>
+systemctl disable <service>
+Check Service Status. Replace <service> with the service name
+systemctl status <service>
+See if a Service is Enabled. Replace <service> with the service name
+systemctl is-enabled <service>
+Configure Logs
+/etc/rsyslog.conf
+/etc/rsyslog.d/*.conf
+View Logs
+/var/log journalctl
+Find Files
+find
+Create Archive
+tar
+cpio
+
+Kernel, Boot, Hardware
+Single user Rescue Mode
+append rd.break or init=/bin/bash to kernel cmdline
+Power Off System
+poweroff
+systemctl poweroff
+Halt System
+halt
+systemctl halt
+Reboot System
+reboot
+systemctl reboot
+Configure GRUB
+/etc/default/grub
+grub2-mkconfig
+grub-set-default
+View Kernel Parameters
+sysctl -a
+cat /proc/cmdline
+Load Kernel Module
+modprobe
+View Kernel Version
+rpm -q kernel
+uname -r
+
+Software Management
+Install Software
+yum install
+yum group install
+View Software Info
+yum info
+yum group info
+Update Software
+yum update
+Upgrade Software
+yum upgrade
+Configure Software Repositories
+/etc/yum.repos.d/*.repo
+Find Package Owning File
+rpm -qf filename
+yum provides filename-glob
+View Software Version
+rpm -q packagename
+View Installed Software
+rpm -qa
+yum list installed
+
+User Management
+Create User
+useradd
+Delete User
+userdel
+View or Change User Details
+usermod
+/etc/passwd
+vipw
+id
+Create User Group
+groupadd
+Delete User Group
+groupdel
+Change Group Details
+groupmod
+/etc/group
+Change User Password
+passwd
+Change User Permissions
+usermod
+visudo
+Change Group Permissions
+groupmod
+visudo
+Change Password Policy
+chage
+View User Sessions
+w
+
+File Systems, Volumes And Disks
+Create / Modify Disk Permissions
+fdisk
+gdisk
+parted
+ssm create
+Format Disk Partitions
+mkswap
+Defragment Disk Space
+fsck
+Mount Storage
+mount
+/etc/fstab
+Mount and Activate Swap
+/etc/fstab
+swapon -a
+View Free Disk Space
+df
+Check or Repair File System
+fsck
+Change File Permissions
+chmod
+chown
+chgrp
+umask
+Change File Attributes
+chattr
+Change Access Control List
+setfacl
+
+Networking
+Change Name Resolution
+/etc/hosts
+/etc/resolv.conf
+Configure Hostname
+hostnamectl
+/etc/hostname
+View Network Interface Information
+ip addr
+teamdctl
+bridge
+View Routes
+ip route
+Configure Routes
+ip route add
+Configure Firewall
+firewall-cmd
+View Ports / Sockets
+ss
+lsof
+
+Security And Identity
+Configure Security System
+/etc/selinux/config chcon
+restorecon
+semanage
+setsebool
+LDAP, SSSD
+authconfig
+authconfig-tui
+Network Users
+getent
+
+Resource Management
+Change Process Priority
+nice
+renice
+Change Process Run Location
+taskset
+Kill a Process
+kill
+pkill
+View System Usage
+top
+ps
+ss
+vmstat
+View Disk Usage
+df

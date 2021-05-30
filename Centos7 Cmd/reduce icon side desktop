@@ -1,0 +1,2 @@
+[umair@localhost ~]$ ##how to reduce the size of desktop icons
+[umair@localhost ~]$ gsettings set org.gnome.nautilus.icon-view default-zoom-level small
