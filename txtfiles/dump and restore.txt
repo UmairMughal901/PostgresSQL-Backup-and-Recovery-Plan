@@ -1,0 +1,26 @@
+###Lets start taking backup of one table. we will take backup in plane text format
+pg_dump -d tutdb -p 5432 -U postgres -t customer -f Pathoffile
+## if you want restore take backup in plan text use psql
+##if you want to backup in inset format
+pg_dump -d tutdb -p 5432 -U postgres -t customer --inserts -f Pathoffile
+## now we will backup of entire database
+pg_dump -d tutdb -p 5432 -U postgres --inserts -f Pathoffile
+##lets take the backup in custom format. just add -F c . this format we can not read. this is the only formate we can use in restore.
+pg_dump -d tutdb -p 5432 -U postgres -F c -v -f Pathoffile
+##now take the backup in directory format.
+## instead of file format use directory name or path
+pg_dump -d tutdb -p 5432 -U postgres -F d -v -f Pathoffile/directorypath
+##if you use -j opetion with 3 it will create threads for dump
+pg_dump -d tutdb -p 5432 -U postgres -F d -v -f Pathoffile/directorypath -j 3
+############################################
+##restore
+######################################
+
+psql -d tutdb -p 5432 -U postgres -f /tmp/tempfile/filename.txt
+
+## now restore full database using custom utility . It will use only custom format.
+pg_restore -d databasename -U postgres -p 5432 fullpath
+
+## lets test the directory format
+##create new database
+pg_restore -d databasename -U postgres -p 5432 fullpath\dirname

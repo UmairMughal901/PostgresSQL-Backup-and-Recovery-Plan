@@ -1,0 +1,4928 @@
+[umair@localhost ~]$ ## connect to postgres super use
+[umair@localhost ~]$ ## connect to postgres super user
+[umair@localhost ~]$ ##################################
+[umair@localhost ~]$ sudo su - postgres
+[sudo] password for umair: 
+Last login: Tue Jun 23 01:16:02 PKT 2020 on pts/0
+-bash-4.2$ psql
+psql (11.8)
+Type "help" for help.
+
+postgres=# ## check how many databases already exist.
+postgres-# \l
+
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Acces
+s privileges   
+-----------+----------+----------+-------------+-------------+--------
+---------------
+ dirdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ mydb2     | myuser2  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ newdb     | testuser | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ tutdb     | postgres | UTF8     | en_US.utf8  | en_US.utf8  | 
+(7 rows)
+
+postgres-# pg_dump --help
+postgres-# \q
+-bash-4.2$ pg_dump --help
+pg_dump dumps a database as a text file or to other formats.
+
+Usage:
+  pg_dump [OPTION]... [DBNAME]
+
+General options:
+  -f, --file=FILENAME          output file or directory name
+  -F, --format=c|d|t|p         output file format (custom, directory, tar,
+                               plain text (default))
+  -j, --jobs=NUM               use this many parallel jobs to dump
+  -v, --verbose                verbose mode
+  -V, --version                output version information, then exit
+  -Z, --compress=0-9           compression level for compressed formats
+  --lock-wait-timeout=TIMEOUT  fail after waiting TIMEOUT for a table lock
+  --no-sync                    do not wait for changes to be written safely to disk
+  -?, --help                   show this help, then exit
+
+Options controlling the output content:
+  -a, --data-only              dump only the data, not the schema
+  -b, --blobs                  include large objects in dump
+  -B, --no-blobs               exclude large objects in dump
+  -c, --clean                  clean (drop) database objects before recreating
+  -C, --create                 include commands to create database in dump
+  -E, --encoding=ENCODING      dump the data in encoding ENCODING
+  -n, --schema=SCHEMA          dump the named schema(s) only
+  -N, --exclude-schema=SCHEMA  do NOT dump the named schema(s)
+  -o, --oids                   include OIDs in dump
+  -O, --no-owner               skip restoration of object ownership in
+                               plain-text format
+  -s, --schema-only            dump only the schema, no data
+  -S, --superuser=NAME         superuser user name to use in plain-text format
+  -t, --table=TABLE            dump the named table(s) only
+  -T, --exclude-table=TABLE    do NOT dump the named table(s)
+  -x, --no-privileges          do not dump privileges (grant/revoke)
+  --binary-upgrade             for use by upgrade utilities only
+  --column-inserts             dump data as INSERT commands with column names
+  --disable-dollar-quoting     disable dollar quoting, use SQL standard quoting
+  --disable-triggers           disable triggers during data-only restore
+  --enable-row-security        enable row security (dump only content user has
+                               access to)
+  --exclude-table-data=TABLE   do NOT dump data for the named table(s)
+  --if-exists                  use IF EXISTS when dropping objects
+  --inserts                    dump data as INSERT commands, rather than COPY
+  --load-via-partition-root    load partitions via the root table
+  --no-comments                do not dump comments
+  --no-publications            do not dump publications
+  --no-security-labels         do not dump security label assignments
+  --no-subscriptions           do not dump subscriptions
+  --no-synchronized-snapshots  do not use synchronized snapshots in parallel jobs
+  --no-tablespaces             do not dump tablespace assignments
+  --no-unlogged-table-data     do not dump unlogged table data
+  --quote-all-identifiers      quote all identifiers, even if not key words
+  --section=SECTION            dump named section (pre-data, data, or post-data)
+  --serializable-deferrable    wait until the dump can run without anomalies
+  --snapshot=SNAPSHOT          use given snapshot for the dump
+  --strict-names               require table and/or schema include patterns to
+                               match at least one entity each
+  --use-set-session-authorization
+                               use SET SESSION AUTHORIZATION commands instead of
+                               ALTER OWNER commands to set ownership
+
+Connection options:
+  -d, --dbname=DBNAME      database to dump
+  -h, --host=HOSTNAME      database server host or socket directory
+  -p, --port=PORT          database server port number
+  -U, --username=NAME      connect as specified database user
+  -w, --no-password        never prompt for password
+  -W, --password           force password prompt (should happen automatically)
+  --role=ROLENAME          do SET ROLE before dump
+
+If no database name is supplied, then the PGDATABASE environment
+variable value is used.
+
+Report bugs to <pgsql-bugs@postgresql.org>.
+-bash-4.2$ ^C
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ #######################################################
+-bash-4.2$ ########################################################
+-bash-4.2$ #########################################################
+-bash-4.2$ ## Lets start from taking backup of one table.
+-bash-4.2$ ###################################################
+-bash-4.2$ ########################################################
+-bash-4.2$ ########################################################
+-bash-4.2$ ### we will backup in plan text format.
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres -t customer -f /tmp/tempfile/custtab_20200623.txt
+-bash-4.2$ ### Its created
+-bash-4.2$ #### if you want to restore the plan text for format backup use psql utility
+-bash-4.2$ ### now we take backup in inserts formate.
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres -t customer --inserts -f /tmp/tempfile/custtab_20200623.txt
+-bash-4.2$ ## its created please check the directory path.
+-bash-4.2$ ###Now we will take the backup of entire database.
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres -t customer --inserts -f /tmp/tempfile/custtab_inserts_20200623.txt
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres  --inserts -v -f /tmp/tempfile/entiretutdb_inserts_20200623.txt
+pg_dump: last built-in OID is 16383
+pg_dump: reading extensions
+pg_dump: identifying extension members
+pg_dump: reading schemas
+pg_dump: reading user-defined tables
+pg_dump: reading user-defined functions
+pg_dump: reading user-defined types
+pg_dump: reading procedural languages
+pg_dump: reading user-defined aggregate functions
+pg_dump: reading user-defined operators
+pg_dump: reading user-defined access methods
+pg_dump: reading user-defined operator classes
+pg_dump: reading user-defined operator families
+pg_dump: reading user-defined text search parsers
+pg_dump: reading user-defined text search templates
+pg_dump: reading user-defined text search dictionaries
+pg_dump: reading user-defined text search configurations
+pg_dump: reading user-defined foreign-data wrappers
+pg_dump: reading user-defined foreign servers
+pg_dump: reading default privileges
+pg_dump: reading user-defined collations
+pg_dump: reading user-defined conversions
+pg_dump: reading type casts
+pg_dump: reading transforms
+pg_dump: reading table inheritance information
+pg_dump: reading event triggers
+pg_dump: finding extension tables
+pg_dump: finding inheritance relationships
+pg_dump: reading column info for interesting tables
+pg_dump: finding the columns and types of table "public.customer"
+pg_dump: finding default expressions of table "public.customer"
+pg_dump: finding the columns and types of table "public.actor"
+pg_dump: finding default expressions of table "public.actor"
+pg_dump: finding the columns and types of table "public.category"
+pg_dump: finding default expressions of table "public.category"
+pg_dump: finding the columns and types of table "public.film"
+pg_dump: finding default expressions of table "public.film"
+pg_dump: finding the columns and types of table "public.film_actor"
+pg_dump: finding default expressions of table "public.film_actor"
+pg_dump: finding the columns and types of table "public.film_category"
+pg_dump: finding default expressions of table "public.film_category"
+pg_dump: finding the columns and types of table "public.actor_info"
+pg_dump: finding the columns and types of table "public.address"
+pg_dump: finding default expressions of table "public.address"
+pg_dump: finding the columns and types of table "public.city"
+pg_dump: finding default expressions of table "public.city"
+pg_dump: finding the columns and types of table "public.country"
+pg_dump: finding default expressions of table "public.country"
+pg_dump: finding the columns and types of table "public.customer_list"
+pg_dump: finding the columns and types of table "public.film_list"
+pg_dump: finding the columns and types of table "public.inventory"
+pg_dump: finding default expressions of table "public.inventory"
+pg_dump: finding the columns and types of table "public.language"
+pg_dump: finding default expressions of table "public.language"
+pg_dump: finding the columns and types of table "public.nicer_but_slower_film_list"
+pg_dump: finding the columns and types of table "public.payment"
+pg_dump: finding default expressions of table "public.payment"
+pg_dump: finding the columns and types of table "public.rental"
+pg_dump: finding default expressions of table "public.rental"
+pg_dump: finding the columns and types of table "public.sales_by_film_category"
+pg_dump: finding the columns and types of table "public.staff"
+pg_dump: finding default expressions of table "public.staff"
+pg_dump: finding the columns and types of table "public.store"
+pg_dump: finding default expressions of table "public.store"
+pg_dump: finding the columns and types of table "public.sales_by_store"
+pg_dump: finding the columns and types of table "public.staff_list"
+pg_dump: flagging inherited columns in subtables
+pg_dump: reading indexes
+pg_dump: reading indexes for table "public.customer"
+pg_dump: reading indexes for table "public.actor"
+pg_dump: reading indexes for table "public.category"
+pg_dump: reading indexes for table "public.film"
+pg_dump: reading indexes for table "public.film_actor"
+pg_dump: reading indexes for table "public.film_category"
+pg_dump: reading indexes for table "public.address"
+pg_dump: reading indexes for table "public.city"
+pg_dump: reading indexes for table "public.country"
+pg_dump: reading indexes for table "public.inventory"
+pg_dump: reading indexes for table "public.language"
+pg_dump: reading indexes for table "public.payment"
+pg_dump: reading indexes for table "public.rental"
+pg_dump: reading indexes for table "public.staff"
+pg_dump: reading indexes for table "public.store"
+pg_dump: flagging indexes in partitioned tables
+pg_dump: reading extended statistics
+pg_dump: reading constraints
+pg_dump: reading foreign key constraints for table "public.actor"
+pg_dump: reading foreign key constraints for table "public.film"
+pg_dump: reading triggers
+pg_dump: reading triggers for table "public.actor"
+pg_dump: reading triggers for table "public.film"
+pg_dump: reading rewrite rules
+pg_dump: reading policies
+pg_dump: reading row security enabled for table "public.customer_customer_id_seq"
+pg_dump: reading policies for table "public.customer_customer_id_seq"
+pg_dump: reading row security enabled for table "public.customer"
+pg_dump: reading policies for table "public.customer"
+pg_dump: reading row security enabled for table "public.actor_actor_id_seq"
+pg_dump: reading policies for table "public.actor_actor_id_seq"
+pg_dump: reading row security enabled for table "public.actor"
+pg_dump: reading policies for table "public.actor"
+pg_dump: reading row security enabled for table "public.category_category_id_seq"
+pg_dump: reading policies for table "public.category_category_id_seq"
+pg_dump: reading row security enabled for table "public.category"
+pg_dump: reading policies for table "public.category"
+pg_dump: reading row security enabled for table "public.film_film_id_seq"
+pg_dump: reading policies for table "public.film_film_id_seq"
+pg_dump: reading row security enabled for table "public.film"
+pg_dump: reading policies for table "public.film"
+pg_dump: reading row security enabled for table "public.film_actor"
+pg_dump: reading policies for table "public.film_actor"
+pg_dump: reading row security enabled for table "public.film_category"
+pg_dump: reading policies for table "public.film_category"
+pg_dump: reading row security enabled for table "public.actor_info"
+pg_dump: reading policies for table "public.actor_info"
+pg_dump: reading row security enabled for table "public.address_address_id_seq"
+pg_dump: reading policies for table "public.address_address_id_seq"
+pg_dump: reading row security enabled for table "public.address"
+pg_dump: reading policies for table "public.address"
+pg_dump: reading row security enabled for table "public.city_city_id_seq"
+pg_dump: reading policies for table "public.city_city_id_seq"
+pg_dump: reading row security enabled for table "public.city"
+pg_dump: reading policies for table "public.city"
+pg_dump: reading row security enabled for table "public.country_country_id_seq"
+pg_dump: reading policies for table "public.country_country_id_seq"
+pg_dump: reading row security enabled for table "public.country"
+pg_dump: reading policies for table "public.country"
+pg_dump: reading row security enabled for table "public.customer_list"
+pg_dump: reading policies for table "public.customer_list"
+pg_dump: reading row security enabled for table "public.film_list"
+pg_dump: reading policies for table "public.film_list"
+pg_dump: reading row security enabled for table "public.inventory_inventory_id_seq"
+pg_dump: reading policies for table "public.inventory_inventory_id_seq"
+pg_dump: reading row security enabled for table "public.inventory"
+pg_dump: reading policies for table "public.inventory"
+pg_dump: reading row security enabled for table "public.language_language_id_seq"
+pg_dump: reading policies for table "public.language_language_id_seq"
+pg_dump: reading row security enabled for table "public.language"
+pg_dump: reading policies for table "public.language"
+pg_dump: reading row security enabled for table "public.nicer_but_slower_film_list"
+pg_dump: reading policies for table "public.nicer_but_slower_film_list"
+pg_dump: reading row security enabled for table "public.payment_payment_id_seq"
+pg_dump: reading policies for table "public.payment_payment_id_seq"
+pg_dump: reading row security enabled for table "public.payment"
+pg_dump: reading policies for table "public.payment"
+pg_dump: reading row security enabled for table "public.rental_rental_id_seq"
+pg_dump: reading policies for table "public.rental_rental_id_seq"
+pg_dump: reading row security enabled for table "public.rental"
+pg_dump: reading policies for table "public.rental"
+pg_dump: reading row security enabled for table "public.sales_by_film_category"
+pg_dump: reading policies for table "public.sales_by_film_category"
+pg_dump: reading row security enabled for table "public.staff_staff_id_seq"
+pg_dump: reading policies for table "public.staff_staff_id_seq"
+pg_dump: reading row security enabled for table "public.staff"
+pg_dump: reading policies for table "public.staff"
+pg_dump: reading row security enabled for table "public.store_store_id_seq"
+pg_dump: reading policies for table "public.store_store_id_seq"
+pg_dump: reading row security enabled for table "public.store"
+pg_dump: reading policies for table "public.store"
+pg_dump: reading row security enabled for table "public.sales_by_store"
+pg_dump: reading policies for table "public.sales_by_store"
+pg_dump: reading row security enabled for table "public.staff_list"
+pg_dump: reading policies for table "public.staff_list"
+pg_dump: reading publications
+pg_dump: reading publication membership
+pg_dump: reading publication membership for table "public.customer"
+pg_dump: reading publication membership for table "public.actor"
+pg_dump: reading publication membership for table "public.category"
+pg_dump: reading publication membership for table "public.film"
+pg_dump: reading publication membership for table "public.film_actor"
+pg_dump: reading publication membership for table "public.film_category"
+pg_dump: reading publication membership for table "public.address"
+pg_dump: reading publication membership for table "public.city"
+pg_dump: reading publication membership for table "public.country"
+pg_dump: reading publication membership for table "public.inventory"
+pg_dump: reading publication membership for table "public.language"
+pg_dump: reading publication membership for table "public.payment"
+pg_dump: reading publication membership for table "public.rental"
+pg_dump: reading publication membership for table "public.staff"
+pg_dump: reading publication membership for table "public.store"
+pg_dump: reading subscriptions
+pg_dump: reading large objects
+pg_dump: reading dependency data
+pg_dump: saving encoding = UTF8
+pg_dump: saving standard_conforming_strings = on
+pg_dump: saving search_path = 
+pg_dump: creating TYPE "public.mpaa_rating"
+pg_dump: creating DOMAIN "public.year"
+pg_dump: creating FUNCTION "public._group_concat(text, text)"
+pg_dump: creating FUNCTION "public.film_in_stock(integer, integer)"
+pg_dump: creating FUNCTION "public.film_not_in_stock(integer, integer)"
+pg_dump: creating FUNCTION "public.get_customer_balance(integer, timestamp without time zone)"
+pg_dump: creating FUNCTION "public.inventory_held_by_customer(integer)"
+pg_dump: creating FUNCTION "public.inventory_in_stock(integer)"
+pg_dump: creating FUNCTION "public.last_day(timestamp without time zone)"
+pg_dump: creating FUNCTION "public.last_updated()"
+pg_dump: creating SEQUENCE "public.customer_customer_id_seq"
+pg_dump: creating TABLE "public.customer"
+pg_dump: creating FUNCTION "public.rewards_report(integer, numeric)"
+pg_dump: creating AGGREGATE "public.group_concat(text)"
+pg_dump: creating SEQUENCE "public.actor_actor_id_seq"
+pg_dump: creating TABLE "public.actor"
+pg_dump: creating SEQUENCE "public.category_category_id_seq"
+pg_dump: creating TABLE "public.category"
+pg_dump: creating SEQUENCE "public.film_film_id_seq"
+pg_dump: creating TABLE "public.film"
+pg_dump: creating TABLE "public.film_actor"
+pg_dump: creating TABLE "public.film_category"
+pg_dump: creating VIEW "public.actor_info"
+pg_dump: creating SEQUENCE "public.address_address_id_seq"
+pg_dump: creating TABLE "public.address"
+pg_dump: creating SEQUENCE "public.city_city_id_seq"
+pg_dump: creating TABLE "public.city"
+pg_dump: creating SEQUENCE "public.country_country_id_seq"
+pg_dump: creating TABLE "public.country"
+pg_dump: creating VIEW "public.customer_list"
+pg_dump: creating VIEW "public.film_list"
+pg_dump: creating SEQUENCE "public.inventory_inventory_id_seq"
+pg_dump: creating TABLE "public.inventory"
+pg_dump: creating SEQUENCE "public.language_language_id_seq"
+pg_dump: creating TABLE "public.language"
+pg_dump: creating VIEW "public.nicer_but_slower_film_list"
+pg_dump: creating SEQUENCE "public.payment_payment_id_seq"
+pg_dump: creating TABLE "public.payment"
+pg_dump: creating SEQUENCE "public.rental_rental_id_seq"
+pg_dump: creating TABLE "public.rental"
+pg_dump: creating VIEW "public.sales_by_film_category"
+pg_dump: creating SEQUENCE "public.staff_staff_id_seq"
+pg_dump: creating TABLE "public.staff"
+pg_dump: creating SEQUENCE "public.store_store_id_seq"
+pg_dump: creating TABLE "public.store"
+pg_dump: creating VIEW "public.sales_by_store"
+pg_dump: creating VIEW "public.staff_list"
+pg_dump: processing data for table "public.actor"
+pg_dump: processing data for table "public.address"
+pg_dump: processing data for table "public.category"
+pg_dump: processing data for table "public.city"
+pg_dump: processing data for table "public.country"
+pg_dump: processing data for table "public.customer"
+pg_dump: processing data for table "public.film"
+pg_dump: processing data for table "public.film_actor"
+pg_dump: processing data for table "public.film_category"
+pg_dump: processing data for table "public.inventory"
+pg_dump: processing data for table "public.language"
+pg_dump: processing data for table "public.payment"
+pg_dump: processing data for table "public.rental"
+pg_dump: processing data for table "public.staff"
+pg_dump: processing data for table "public.store"
+pg_dump: executing SEQUENCE SET actor_actor_id_seq
+pg_dump: executing SEQUENCE SET address_address_id_seq
+pg_dump: executing SEQUENCE SET category_category_id_seq
+pg_dump: executing SEQUENCE SET city_city_id_seq
+pg_dump: executing SEQUENCE SET country_country_id_seq
+pg_dump: executing SEQUENCE SET customer_customer_id_seq
+pg_dump: executing SEQUENCE SET film_film_id_seq
+pg_dump: executing SEQUENCE SET inventory_inventory_id_seq
+pg_dump: executing SEQUENCE SET language_language_id_seq
+pg_dump: executing SEQUENCE SET payment_payment_id_seq
+pg_dump: executing SEQUENCE SET rental_rental_id_seq
+pg_dump: executing SEQUENCE SET staff_staff_id_seq
+pg_dump: executing SEQUENCE SET store_store_id_seq
+pg_dump: creating CONSTRAINT "public.actor actor_pkey"
+pg_dump: creating CONSTRAINT "public.address address_pkey"
+pg_dump: creating CONSTRAINT "public.category category_pkey"
+pg_dump: creating CONSTRAINT "public.city city_pkey"
+pg_dump: creating CONSTRAINT "public.country country_pkey"
+pg_dump: creating CONSTRAINT "public.film_actor film_actor_pkey"
+pg_dump: creating CONSTRAINT "public.film_category film_category_pkey"
+pg_dump: creating CONSTRAINT "public.film film_pkey"
+pg_dump: creating CONSTRAINT "public.inventory inventory_pkey"
+pg_dump: creating CONSTRAINT "public.language language_pkey"
+pg_dump: creating CONSTRAINT "public.payment payment_pkey"
+pg_dump: creating CONSTRAINT "public.rental rental_pkey"
+pg_dump: creating CONSTRAINT "public.staff staff_pkey"
+pg_dump: creating CONSTRAINT "public.store store_pkey"
+pg_dump: creating INDEX "public.film_fulltext_idx"
+pg_dump: creating INDEX "public.idx_actor_last_name"
+pg_dump: creating INDEX "public.idx_fk_address_id"
+pg_dump: creating INDEX "public.idx_fk_city_id"
+pg_dump: creating INDEX "public.idx_fk_country_id"
+pg_dump: creating INDEX "public.idx_fk_customer_id"
+pg_dump: creating INDEX "public.idx_fk_film_id"
+pg_dump: creating INDEX "public.idx_fk_inventory_id"
+pg_dump: creating INDEX "public.idx_fk_language_id"
+pg_dump: creating INDEX "public.idx_fk_rental_id"
+pg_dump: creating INDEX "public.idx_fk_staff_id"
+pg_dump: creating INDEX "public.idx_fk_store_id"
+pg_dump: creating INDEX "public.idx_last_name"
+pg_dump: creating INDEX "public.idx_store_id_film_id"
+pg_dump: creating INDEX "public.idx_title"
+pg_dump: creating INDEX "public.idx_unq_manager_staff_id"
+pg_dump: creating INDEX "public.idx_unq_rental_rental_date_inventory_id_customer_id"
+pg_dump: creating TRIGGER "public.film film_fulltext_trigger"
+pg_dump: creating TRIGGER "public.actor last_updated"
+-bash-4.2$ ## you see here we add -v in pervious command. it verbos which shows about the all transection details and show you on screen
+-bash-4.2$ ################################
+-bash-4.2$ ##################################
+-bash-4.2$ ##############################
+-bash-4.2$ ###################################
+-bash-4.2$ ###Lets take the backup in custom format. Here we will add -F c and this format is not human readable. This is the only format use for pg_restore for restore of database.
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres  -F c -v -f /tmp/tempfile/entiretutdb_custom_20200623.txt
+pg_dump: last built-in OID is 16383
+pg_dump: reading extensions
+pg_dump: identifying extension members
+pg_dump: reading schemas
+pg_dump: reading user-defined tables
+pg_dump: reading user-defined functions
+pg_dump: reading user-defined types
+pg_dump: reading procedural languages
+pg_dump: reading user-defined aggregate functions
+pg_dump: reading user-defined operators
+pg_dump: reading user-defined access methods
+pg_dump: reading user-defined operator classes
+pg_dump: reading user-defined operator families
+pg_dump: reading user-defined text search parsers
+pg_dump: reading user-defined text search templates
+pg_dump: reading user-defined text search dictionaries
+pg_dump: reading user-defined text search configurations
+pg_dump: reading user-defined foreign-data wrappers
+pg_dump: reading user-defined foreign servers
+pg_dump: reading default privileges
+pg_dump: reading user-defined collations
+pg_dump: reading user-defined conversions
+pg_dump: reading type casts
+pg_dump: reading transforms
+pg_dump: reading table inheritance information
+pg_dump: reading event triggers
+pg_dump: finding extension tables
+pg_dump: finding inheritance relationships
+pg_dump: reading column info for interesting tables
+pg_dump: finding the columns and types of table "public.customer"
+pg_dump: finding default expressions of table "public.customer"
+pg_dump: finding the columns and types of table "public.actor"
+pg_dump: finding default expressions of table "public.actor"
+pg_dump: finding the columns and types of table "public.category"
+pg_dump: finding default expressions of table "public.category"
+pg_dump: finding the columns and types of table "public.film"
+pg_dump: finding default expressions of table "public.film"
+pg_dump: finding the columns and types of table "public.film_actor"
+pg_dump: finding default expressions of table "public.film_actor"
+pg_dump: finding the columns and types of table "public.film_category"
+pg_dump: finding default expressions of table "public.film_category"
+pg_dump: finding the columns and types of table "public.actor_info"
+pg_dump: finding the columns and types of table "public.address"
+pg_dump: finding default expressions of table "public.address"
+pg_dump: finding the columns and types of table "public.city"
+pg_dump: finding default expressions of table "public.city"
+pg_dump: finding the columns and types of table "public.country"
+pg_dump: finding default expressions of table "public.country"
+pg_dump: finding the columns and types of table "public.customer_list"
+pg_dump: finding the columns and types of table "public.film_list"
+pg_dump: finding the columns and types of table "public.inventory"
+pg_dump: finding default expressions of table "public.inventory"
+pg_dump: finding the columns and types of table "public.language"
+pg_dump: finding default expressions of table "public.language"
+pg_dump: finding the columns and types of table "public.nicer_but_slower_film_list"
+pg_dump: finding the columns and types of table "public.payment"
+pg_dump: finding default expressions of table "public.payment"
+pg_dump: finding the columns and types of table "public.rental"
+pg_dump: finding default expressions of table "public.rental"
+pg_dump: finding the columns and types of table "public.sales_by_film_category"
+pg_dump: finding the columns and types of table "public.staff"
+pg_dump: finding default expressions of table "public.staff"
+pg_dump: finding the columns and types of table "public.store"
+pg_dump: finding default expressions of table "public.store"
+pg_dump: finding the columns and types of table "public.sales_by_store"
+pg_dump: finding the columns and types of table "public.staff_list"
+pg_dump: flagging inherited columns in subtables
+pg_dump: reading indexes
+pg_dump: reading indexes for table "public.customer"
+pg_dump: reading indexes for table "public.actor"
+pg_dump: reading indexes for table "public.category"
+pg_dump: reading indexes for table "public.film"
+pg_dump: reading indexes for table "public.film_actor"
+pg_dump: reading indexes for table "public.film_category"
+pg_dump: reading indexes for table "public.address"
+pg_dump: reading indexes for table "public.city"
+pg_dump: reading indexes for table "public.country"
+pg_dump: reading indexes for table "public.inventory"
+pg_dump: reading indexes for table "public.language"
+pg_dump: reading indexes for table "public.payment"
+pg_dump: reading indexes for table "public.rental"
+pg_dump: reading indexes for table "public.staff"
+pg_dump: reading indexes for table "public.store"
+pg_dump: flagging indexes in partitioned tables
+pg_dump: reading extended statistics
+pg_dump: reading constraints
+pg_dump: reading foreign key constraints for table "public.actor"
+pg_dump: reading foreign key constraints for table "public.film"
+pg_dump: reading triggers
+pg_dump: reading triggers for table "public.actor"
+pg_dump: reading triggers for table "public.film"
+pg_dump: reading rewrite rules
+pg_dump: reading policies
+pg_dump: reading row security enabled for table "public.customer_customer_id_seq"
+pg_dump: reading policies for table "public.customer_customer_id_seq"
+pg_dump: reading row security enabled for table "public.customer"
+pg_dump: reading policies for table "public.customer"
+pg_dump: reading row security enabled for table "public.actor_actor_id_seq"
+pg_dump: reading policies for table "public.actor_actor_id_seq"
+pg_dump: reading row security enabled for table "public.actor"
+pg_dump: reading policies for table "public.actor"
+pg_dump: reading row security enabled for table "public.category_category_id_seq"
+pg_dump: reading policies for table "public.category_category_id_seq"
+pg_dump: reading row security enabled for table "public.category"
+pg_dump: reading policies for table "public.category"
+pg_dump: reading row security enabled for table "public.film_film_id_seq"
+pg_dump: reading policies for table "public.film_film_id_seq"
+pg_dump: reading row security enabled for table "public.film"
+pg_dump: reading policies for table "public.film"
+pg_dump: reading row security enabled for table "public.film_actor"
+pg_dump: reading policies for table "public.film_actor"
+pg_dump: reading row security enabled for table "public.film_category"
+pg_dump: reading policies for table "public.film_category"
+pg_dump: reading row security enabled for table "public.actor_info"
+pg_dump: reading policies for table "public.actor_info"
+pg_dump: reading row security enabled for table "public.address_address_id_seq"
+pg_dump: reading policies for table "public.address_address_id_seq"
+pg_dump: reading row security enabled for table "public.address"
+pg_dump: reading policies for table "public.address"
+pg_dump: reading row security enabled for table "public.city_city_id_seq"
+pg_dump: reading policies for table "public.city_city_id_seq"
+pg_dump: reading row security enabled for table "public.city"
+pg_dump: reading policies for table "public.city"
+pg_dump: reading row security enabled for table "public.country_country_id_seq"
+pg_dump: reading policies for table "public.country_country_id_seq"
+pg_dump: reading row security enabled for table "public.country"
+pg_dump: reading policies for table "public.country"
+pg_dump: reading row security enabled for table "public.customer_list"
+pg_dump: reading policies for table "public.customer_list"
+pg_dump: reading row security enabled for table "public.film_list"
+pg_dump: reading policies for table "public.film_list"
+pg_dump: reading row security enabled for table "public.inventory_inventory_id_seq"
+pg_dump: reading policies for table "public.inventory_inventory_id_seq"
+pg_dump: reading row security enabled for table "public.inventory"
+pg_dump: reading policies for table "public.inventory"
+pg_dump: reading row security enabled for table "public.language_language_id_seq"
+pg_dump: reading policies for table "public.language_language_id_seq"
+pg_dump: reading row security enabled for table "public.language"
+pg_dump: reading policies for table "public.language"
+pg_dump: reading row security enabled for table "public.nicer_but_slower_film_list"
+pg_dump: reading policies for table "public.nicer_but_slower_film_list"
+pg_dump: reading row security enabled for table "public.payment_payment_id_seq"
+pg_dump: reading policies for table "public.payment_payment_id_seq"
+pg_dump: reading row security enabled for table "public.payment"
+pg_dump: reading policies for table "public.payment"
+pg_dump: reading row security enabled for table "public.rental_rental_id_seq"
+pg_dump: reading policies for table "public.rental_rental_id_seq"
+pg_dump: reading row security enabled for table "public.rental"
+pg_dump: reading policies for table "public.rental"
+pg_dump: reading row security enabled for table "public.sales_by_film_category"
+pg_dump: reading policies for table "public.sales_by_film_category"
+pg_dump: reading row security enabled for table "public.staff_staff_id_seq"
+pg_dump: reading policies for table "public.staff_staff_id_seq"
+pg_dump: reading row security enabled for table "public.staff"
+pg_dump: reading policies for table "public.staff"
+pg_dump: reading row security enabled for table "public.store_store_id_seq"
+pg_dump: reading policies for table "public.store_store_id_seq"
+pg_dump: reading row security enabled for table "public.store"
+pg_dump: reading policies for table "public.store"
+pg_dump: reading row security enabled for table "public.sales_by_store"
+pg_dump: reading policies for table "public.sales_by_store"
+pg_dump: reading row security enabled for table "public.staff_list"
+pg_dump: reading policies for table "public.staff_list"
+pg_dump: reading publications
+pg_dump: reading publication membership
+pg_dump: reading publication membership for table "public.customer"
+pg_dump: reading publication membership for table "public.actor"
+pg_dump: reading publication membership for table "public.category"
+pg_dump: reading publication membership for table "public.film"
+pg_dump: reading publication membership for table "public.film_actor"
+pg_dump: reading publication membership for table "public.film_category"
+pg_dump: reading publication membership for table "public.address"
+pg_dump: reading publication membership for table "public.city"
+pg_dump: reading publication membership for table "public.country"
+pg_dump: reading publication membership for table "public.inventory"
+pg_dump: reading publication membership for table "public.language"
+pg_dump: reading publication membership for table "public.payment"
+pg_dump: reading publication membership for table "public.rental"
+pg_dump: reading publication membership for table "public.staff"
+pg_dump: reading publication membership for table "public.store"
+pg_dump: reading subscriptions
+pg_dump: reading large objects
+pg_dump: reading dependency data
+pg_dump: saving encoding = UTF8
+pg_dump: saving standard_conforming_strings = on
+pg_dump: saving search_path = 
+pg_dump: saving database definition
+pg_dump: dumping contents of table "public.actor"
+pg_dump: dumping contents of table "public.address"
+pg_dump: dumping contents of table "public.category"
+pg_dump: dumping contents of table "public.city"
+pg_dump: dumping contents of table "public.country"
+pg_dump: dumping contents of table "public.customer"
+pg_dump: dumping contents of table "public.film"
+pg_dump: dumping contents of table "public.film_actor"
+pg_dump: dumping contents of table "public.film_category"
+pg_dump: dumping contents of table "public.inventory"
+pg_dump: dumping contents of table "public.language"
+pg_dump: dumping contents of table "public.payment"
+pg_dump: dumping contents of table "public.rental"
+pg_dump: dumping contents of table "public.staff"
+pg_dump: dumping contents of table "public.store"
+-bash-4.2$ ##its dome
+-bash-4.2$ #####################################
+-bash-4.2$ ###########################################
+-bash-4.2$ ##################################################
+-bash-4.2$ ## lets take the backup in diecctory format
+-bash-4.2$ ## first create the directory and give permissions for postgres or group users.
+-bash-4.2$ ## i have created the directory /tmp/tempfile/bkdir
+-bash-4.2$ ##here we will use directory name instead of file name
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres  -F d -v -f /tmp/tempfile/bkdir
+pg_dump: last built-in OID is 16383
+pg_dump: reading extensions
+pg_dump: identifying extension members
+pg_dump: reading schemas
+pg_dump: reading user-defined tables
+pg_dump: reading user-defined functions
+pg_dump: reading user-defined types
+pg_dump: reading procedural languages
+pg_dump: reading user-defined aggregate functions
+pg_dump: reading user-defined operators
+pg_dump: reading user-defined access methods
+pg_dump: reading user-defined operator classes
+pg_dump: reading user-defined operator families
+pg_dump: reading user-defined text search parsers
+pg_dump: reading user-defined text search templates
+pg_dump: reading user-defined text search dictionaries
+pg_dump: reading user-defined text search configurations
+pg_dump: reading user-defined foreign-data wrappers
+pg_dump: reading user-defined foreign servers
+pg_dump: reading default privileges
+pg_dump: reading user-defined collations
+pg_dump: reading user-defined conversions
+pg_dump: reading type casts
+pg_dump: reading transforms
+pg_dump: reading table inheritance information
+pg_dump: reading event triggers
+pg_dump: finding extension tables
+pg_dump: finding inheritance relationships
+pg_dump: reading column info for interesting tables
+pg_dump: finding the columns and types of table "public.customer"
+pg_dump: finding default expressions of table "public.customer"
+pg_dump: finding the columns and types of table "public.actor"
+pg_dump: finding default expressions of table "public.actor"
+pg_dump: finding the columns and types of table "public.category"
+pg_dump: finding default expressions of table "public.category"
+pg_dump: finding the columns and types of table "public.film"
+pg_dump: finding default expressions of table "public.film"
+pg_dump: finding the columns and types of table "public.film_actor"
+pg_dump: finding default expressions of table "public.film_actor"
+pg_dump: finding the columns and types of table "public.film_category"
+pg_dump: finding default expressions of table "public.film_category"
+pg_dump: finding the columns and types of table "public.actor_info"
+pg_dump: finding the columns and types of table "public.address"
+pg_dump: finding default expressions of table "public.address"
+pg_dump: finding the columns and types of table "public.city"
+pg_dump: finding default expressions of table "public.city"
+pg_dump: finding the columns and types of table "public.country"
+pg_dump: finding default expressions of table "public.country"
+pg_dump: finding the columns and types of table "public.customer_list"
+pg_dump: finding the columns and types of table "public.film_list"
+pg_dump: finding the columns and types of table "public.inventory"
+pg_dump: finding default expressions of table "public.inventory"
+pg_dump: finding the columns and types of table "public.language"
+pg_dump: finding default expressions of table "public.language"
+pg_dump: finding the columns and types of table "public.nicer_but_slower_film_list"
+pg_dump: finding the columns and types of table "public.payment"
+pg_dump: finding default expressions of table "public.payment"
+pg_dump: finding the columns and types of table "public.rental"
+pg_dump: finding default expressions of table "public.rental"
+pg_dump: finding the columns and types of table "public.sales_by_film_category"
+pg_dump: finding the columns and types of table "public.staff"
+pg_dump: finding default expressions of table "public.staff"
+pg_dump: finding the columns and types of table "public.store"
+pg_dump: finding default expressions of table "public.store"
+pg_dump: finding the columns and types of table "public.sales_by_store"
+pg_dump: finding the columns and types of table "public.staff_list"
+pg_dump: flagging inherited columns in subtables
+pg_dump: reading indexes
+pg_dump: reading indexes for table "public.customer"
+pg_dump: reading indexes for table "public.actor"
+pg_dump: reading indexes for table "public.category"
+pg_dump: reading indexes for table "public.film"
+pg_dump: reading indexes for table "public.film_actor"
+pg_dump: reading indexes for table "public.film_category"
+pg_dump: reading indexes for table "public.address"
+pg_dump: reading indexes for table "public.city"
+pg_dump: reading indexes for table "public.country"
+pg_dump: reading indexes for table "public.inventory"
+pg_dump: reading indexes for table "public.language"
+pg_dump: reading indexes for table "public.payment"
+pg_dump: reading indexes for table "public.rental"
+pg_dump: reading indexes for table "public.staff"
+pg_dump: reading indexes for table "public.store"
+pg_dump: flagging indexes in partitioned tables
+pg_dump: reading extended statistics
+pg_dump: reading constraints
+pg_dump: reading foreign key constraints for table "public.actor"
+pg_dump: reading foreign key constraints for table "public.film"
+pg_dump: reading triggers
+pg_dump: reading triggers for table "public.actor"
+pg_dump: reading triggers for table "public.film"
+pg_dump: reading rewrite rules
+pg_dump: reading policies
+pg_dump: reading row security enabled for table "public.customer_customer_id_seq"
+pg_dump: reading policies for table "public.customer_customer_id_seq"
+pg_dump: reading row security enabled for table "public.customer"
+pg_dump: reading policies for table "public.customer"
+pg_dump: reading row security enabled for table "public.actor_actor_id_seq"
+pg_dump: reading policies for table "public.actor_actor_id_seq"
+pg_dump: reading row security enabled for table "public.actor"
+pg_dump: reading policies for table "public.actor"
+pg_dump: reading row security enabled for table "public.category_category_id_seq"
+pg_dump: reading policies for table "public.category_category_id_seq"
+pg_dump: reading row security enabled for table "public.category"
+pg_dump: reading policies for table "public.category"
+pg_dump: reading row security enabled for table "public.film_film_id_seq"
+pg_dump: reading policies for table "public.film_film_id_seq"
+pg_dump: reading row security enabled for table "public.film"
+pg_dump: reading policies for table "public.film"
+pg_dump: reading row security enabled for table "public.film_actor"
+pg_dump: reading policies for table "public.film_actor"
+pg_dump: reading row security enabled for table "public.film_category"
+pg_dump: reading policies for table "public.film_category"
+pg_dump: reading row security enabled for table "public.actor_info"
+pg_dump: reading policies for table "public.actor_info"
+pg_dump: reading row security enabled for table "public.address_address_id_seq"
+pg_dump: reading policies for table "public.address_address_id_seq"
+pg_dump: reading row security enabled for table "public.address"
+pg_dump: reading policies for table "public.address"
+pg_dump: reading row security enabled for table "public.city_city_id_seq"
+pg_dump: reading policies for table "public.city_city_id_seq"
+pg_dump: reading row security enabled for table "public.city"
+pg_dump: reading policies for table "public.city"
+pg_dump: reading row security enabled for table "public.country_country_id_seq"
+pg_dump: reading policies for table "public.country_country_id_seq"
+pg_dump: reading row security enabled for table "public.country"
+pg_dump: reading policies for table "public.country"
+pg_dump: reading row security enabled for table "public.customer_list"
+pg_dump: reading policies for table "public.customer_list"
+pg_dump: reading row security enabled for table "public.film_list"
+pg_dump: reading policies for table "public.film_list"
+pg_dump: reading row security enabled for table "public.inventory_inventory_id_seq"
+pg_dump: reading policies for table "public.inventory_inventory_id_seq"
+pg_dump: reading row security enabled for table "public.inventory"
+pg_dump: reading policies for table "public.inventory"
+pg_dump: reading row security enabled for table "public.language_language_id_seq"
+pg_dump: reading policies for table "public.language_language_id_seq"
+pg_dump: reading row security enabled for table "public.language"
+pg_dump: reading policies for table "public.language"
+pg_dump: reading row security enabled for table "public.nicer_but_slower_film_list"
+pg_dump: reading policies for table "public.nicer_but_slower_film_list"
+pg_dump: reading row security enabled for table "public.payment_payment_id_seq"
+pg_dump: reading policies for table "public.payment_payment_id_seq"
+pg_dump: reading row security enabled for table "public.payment"
+pg_dump: reading policies for table "public.payment"
+pg_dump: reading row security enabled for table "public.rental_rental_id_seq"
+pg_dump: reading policies for table "public.rental_rental_id_seq"
+pg_dump: reading row security enabled for table "public.rental"
+pg_dump: reading policies for table "public.rental"
+pg_dump: reading row security enabled for table "public.sales_by_film_category"
+pg_dump: reading policies for table "public.sales_by_film_category"
+pg_dump: reading row security enabled for table "public.staff_staff_id_seq"
+pg_dump: reading policies for table "public.staff_staff_id_seq"
+pg_dump: reading row security enabled for table "public.staff"
+pg_dump: reading policies for table "public.staff"
+pg_dump: reading row security enabled for table "public.store_store_id_seq"
+pg_dump: reading policies for table "public.store_store_id_seq"
+pg_dump: reading row security enabled for table "public.store"
+pg_dump: reading policies for table "public.store"
+pg_dump: reading row security enabled for table "public.sales_by_store"
+pg_dump: reading policies for table "public.sales_by_store"
+pg_dump: reading row security enabled for table "public.staff_list"
+pg_dump: reading policies for table "public.staff_list"
+pg_dump: reading publications
+pg_dump: reading publication membership
+pg_dump: reading publication membership for table "public.customer"
+pg_dump: reading publication membership for table "public.actor"
+pg_dump: reading publication membership for table "public.category"
+pg_dump: reading publication membership for table "public.film"
+pg_dump: reading publication membership for table "public.film_actor"
+pg_dump: reading publication membership for table "public.film_category"
+pg_dump: reading publication membership for table "public.address"
+pg_dump: reading publication membership for table "public.city"
+pg_dump: reading publication membership for table "public.country"
+pg_dump: reading publication membership for table "public.inventory"
+pg_dump: reading publication membership for table "public.language"
+pg_dump: reading publication membership for table "public.payment"
+pg_dump: reading publication membership for table "public.rental"
+pg_dump: reading publication membership for table "public.staff"
+pg_dump: reading publication membership for table "public.store"
+pg_dump: reading subscriptions
+pg_dump: reading large objects
+pg_dump: reading dependency data
+pg_dump: saving encoding = UTF8
+pg_dump: saving standard_conforming_strings = on
+pg_dump: saving search_path = 
+pg_dump: saving database definition
+pg_dump: dumping contents of table "public.actor"
+pg_dump: dumping contents of table "public.address"
+pg_dump: dumping contents of table "public.category"
+pg_dump: dumping contents of table "public.city"
+pg_dump: dumping contents of table "public.country"
+pg_dump: dumping contents of table "public.customer"
+pg_dump: dumping contents of table "public.film"
+pg_dump: dumping contents of table "public.film_actor"
+pg_dump: dumping contents of table "public.film_category"
+pg_dump: dumping contents of table "public.inventory"
+pg_dump: dumping contents of table "public.language"
+pg_dump: dumping contents of table "public.payment"
+pg_dump: dumping contents of table "public.rental"
+pg_dump: dumping contents of table "public.staff"
+pg_dump: dumping contents of table "public.store"
+-bash-4.2$ ## perfectly done
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres  -F d -v -f /tmp/tempfile/bkdir -j 3
+pg_dump: [directory archiver] could not create directory "/tmp/tempfile/bkdir": File exists
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+
+
+
+pg_dump: dumping contents of table "public.inventory"
+pg_dump: dumping contents of table "public.language"
+pg_dump: dumping contents of table "public.payment"
+pg_dump: dumping contents of table "public.rental"
+pg_dump: dumping contents of table "public.staff"
+pg_dump: dumping contents of table "public.store"
+-bash-4.2$ ## perfectly done
+-bash-4.2$ pg_dump -d tutdb -p 5432 -U postgres  -F d -v -f /tmp/tempfile/bkdir -j 3
+pg_dump: [directory archiver] could not create directory "/tmp/tempfile/bkdir": File exists
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ 
+-bash-4.2$ clea
+bash: clea: command not found...
+-bash-4.2$ clear
+
+-bash-4.2$ ##################################################
+-bash-4.2$ #################################################
+-bash-4.2$ ## RESTORE THE DATABASE
+-bash-4.2$ #################################################
+-bash-4.2$ ###################################################
+-bash-4.2$ ## first we will restore the plan text format. As we discussed we will use psql.
+-bash-4.2$ psql -d tutdb -p 5432 -U postgres -f /tmp/tempfile/custtab_20200623.txt
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+psql:/tmp/tempfile/custtab_20200623.txt:38: ERROR:  relation "customer" already exists
+ALTER TABLE
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+^CCancel request sent
+INSERT 0 1
+-bash-4.2$ ## data is already there so its duplicated.
+-bash-4.2$ ### Now we will restore full data . first we drop tutdb and then create again/
+-bash-4.2$ psql
+psql (11.8)
+Type "help" for help.
+
+postgres=# drop database tutdb;
+DROP DATABASE
+postgres=# \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Acces
+s privileges   
+-----------+----------+----------+-------------+-------------+--------
+---------------
+ dirdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ mydb2     | myuser2  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ newdb     | testuser | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+(6 rows)
+
+postgres=# create database tutdb;
+CREATE DATABASE
+postgres=# \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Acces
+s privileges   
+-----------+----------+----------+-------------+-------------+--------
+---------------
+ dirdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ mydb2     | myuser2  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ newdb     | testuser | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ tutdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+(7 rows)
+
+postgres=# \q
+-bash-4.2$ ### now we restore full database.
+-bash-4.2$ ## here i will use custom format.
+-bash-4.2$ pg_restore -d tutdb -U postgres -p 5432 /tmp/tempfile/entiretutdb_custom_20200623.txt
+-bash-4.2$ ## database populated lets see
+-bash-4.2$ psql
+psql (11.8)
+Type "help" for help.
+
+postgres=# \c tutdb
+You are now connected to database "tutdb" as user "postgres".
+tutdb=# 
+tutdb=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner   
+--------+---------------+-------+----------
+ public | actor         | table | postgres
+ public | address       | table | postgres
+ public | category      | table | postgres
+ public | city          | table | postgres
+ public | country       | table | postgres
+ public | customer      | table | postgres
+ public | film          | table | postgres
+ public | film_actor    | table | postgres
+ public | film_category | table | postgres
+ public | inventory     | table | postgres
+ public | language      | table | postgres
+ public | payment       | table | postgres
+ public | rental        | table | postgres
+ public | staff         | table | postgres
+ public | store         | table | postgres
+(15 rows)
+
+tutdb=# select * from actor;
+ actor_id | first_name  |  last_name   |      last_update       
+----------+-------------+--------------+------------------------
+        1 | Penelope    | Guiness      | 2013-05-26 14:47:57.62
+        2 | Nick        | Wahlberg     | 2013-05-26 14:47:57.62
+        3 | Ed          | Chase        | 2013-05-26 14:47:57.62
+        4 | Jennifer    | Davis        | 2013-05-26 14:47:57.62
+        5 | Johnny      | Lollobrigida | 2013-05-26 14:47:57.62
+        6 | Bette       | Nicholson    | 2013-05-26 14:47:57.62
+        7 | Grace       | Mostel       | 2013-05-26 14:47:57.62
+        8 | Matthew     | Johansson    | 2013-05-26 14:47:57.62
+        9 | Joe         | Swank        | 2013-05-26 14:47:57.62
+       10 | Christian   | Gable        | 2013-05-26 14:47:57.62
+       11 | Zero        | Cage         | 2013-05-26 14:47:57.62
+       12 | Karl        | Berry        | 2013-05-26 14:47:57.62
+       13 | Uma         | Wood         | 2013-05-26 14:47:57.62
+       14 | Vivien      | Bergen       | 2013-05-26 14:47:57.62
+       15 | Cuba        | Olivier      | 2013-05-26 14:47:57.62
+       16 | Fred        | Costner      | 2013-05-26 14:47:57.62
+       17 | Helen       | Voight       | 2013-05-26 14:47:57.62
+       18 | Dan         | Torn         | 2013-05-26 14:47:57.62
+       19 | Bob         | Fawcett      | 2013-05-26 14:47:57.62
+       20 | Lucille     | Tracy        | 2013-05-26 14:47:57.62
+       21 | Kirsten     | Paltrow      | 2013-05-26 14:47:57.62
+tutdb=# 
+tutdb=# \q
+-bash-4.2$ ####it perfectly done
+-bash-4.2$ #### lets create an other user and try to restore database from directory dump formate.
+-bash-4.2$ ### lets do it.
+-bash-4.2$ plsq
+bash: plsq: command not found...
+-bash-4.2$ psql
+psql (11.8)
+Type "help" for help.
+
+postgres=# \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Acces
+s privileges   
+-----------+----------+----------+-------------+-------------+--------
+---------------
+ dirdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ mydb2     | myuser2  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ newdb     | testuser | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/post
+gres          +
+           |          |          |             |             | postgre
+s=CTc/postgres
+ tutdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+(7 rows)
+
+postgres=# drop database dirdb;
+DROP DATABASE
+postgres=# create database dirdb;
+CREATE DATABASE
+postgres=# \q
+-bash-4.2$ pg_restore -d dirdb -U postgres -p 5432 /tmp/tempfile/bkdir
+-bash-4.2$ ### its restores lets see
+-bash-4.2$ psql
+psql (11.8)
+Type "help" for help.
+
+postgres=# \c dirdb
+You are now connected to database "dirdb" as user "postgres".
+dirdb=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner   
+--------+---------------+-------+----------
+ public | actor         | table | postgres
+ public | address       | table | postgres
+ public | category      | table | postgres
+ public | city          | table | postgres
+ public | country       | table | postgres
+ public | customer      | table | postgres
+ public | film          | table | postgres
+ public | film_actor    | table | postgres
+ public | film_category | table | postgres
+ public | inventory     | table | postgres
+ public | language      | table | postgres
+ public | payment       | table | postgres
+ public | rental        | table | postgres
+ public | staff         | table | postgres
+ public | store         | table | postgres
+(15 rows)
+
+dirdb=# select * frrom store;
+ERROR:  syntax error at or near "frrom"
+LINE 1: select * frrom store;
+                 ^
+dirdb=# select * from store;
+ store_id | manager_staff_id | address_id |     last_update     
+----------+------------------+------------+---------------------
+        1 |                1 |          1 | 2006-02-15 09:57:12
+        2 |                2 |          2 | 2006-02-15 09:57:12
+(2 rows)
+
+dirdb=# 
+dirdb=# \a
+Output format is unaligned.
+dirdb=# \q
+-bash-4.2$ #### perfectly done
+-bash-4.2$ ### thank you to stay with us.
+-bash-4.2$ 

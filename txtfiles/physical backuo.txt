@@ -1,0 +1,5 @@
+To take manual, consistent, physical backups, following steps are required:
+
+You need to create a checkpoint using pg_start_backup(‘some label’)
+Copy contents of the data directory
+Stop backup using pg_stop_backup()

@@ -1,0 +1,7 @@
+Postgresql stores databse in files. Its architecture dependent , version dependent, compiler flags and paths must be identical.
+Equvilent Hardware and software.
+It only support full cluster backups.
+Esiest way to take physical backup is offline backups. 
+Stop Postgresql
+Take Backup 
+Start Postgresql
